@@ -9,12 +9,12 @@ let renameAddresses: any = networkAddresses
 renameAddresses['apothem'] = networkAddresses['51']
 
 export let addresses: Addresses = {
-  CollateralPoolConfig: '{{apothem.CollateralPoolConfig.address}}',
-  BookKeeper: '{{apothem.BookKeeper.address}}',
-  PriceOracle: '{{apothem.PriceOracle.address}}',
-  PositionManager: '{{apothem.PositionManager.address}}',
-  FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy.address}}',
-  StableSwap: '{{apothem.StableSwap.address}}',
+  CollateralPoolConfig: '{{apothem.CollateralPoolConfig}}',
+  BookKeeper: '{{apothem.BookKeeper}}',
+  PriceOracle: '{{apothem.PriceOracle}}',
+  PositionManager: '{{apothem.PositionManager}}',
+  FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy}}',
+  StableSwap: '{{apothem.StableSwap}}',
   blockNumber: '',
   network: '',
 }
@@ -22,7 +22,7 @@ export let addresses: Addresses = {
 const main = (): void => {
   try {
     let output = JSON.parse(mustache.render(JSON.stringify(addresses), renameAddresses))
-    output.blockNumber = '42355335' // Hardcoded from before first contract deploy of the latest phase
+    output.blockNumber = '42355335' // Block when first contract was created
     output.network = 'apothem'
     fs.writeFileSync(__dirname + '/generatedAddresses.json', JSON.stringify(output, null, 2))
   } catch (e) {
