@@ -4,6 +4,7 @@ import {
   CollateralPoolConfig, LogInitCollateralPoolId, LogSetDebtCeiling, LogSetLiquidationRatio, LogSetDebtAccumulatedRate
 } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
 import { Constants } from "./Utils/Constants"
+import { addresses } from "../config/addresses"
 
 export function handleLogInitCollateralPoolId(
   event: LogInitCollateralPoolId
@@ -28,7 +29,7 @@ export function handleLogInitCollateralPoolId(
     pool.totalAvailable = Constants.divByRAD(event.params._debtCeiling) 
     pool.positions = []
 
-    let collateralConfig = CollateralPoolConfig.bind(Address.fromString(Constants.ADDR_COLLATERAL_POOL_CONFIG))
+    let collateralConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
     pool.debtAccumulatedRate = Constants.divByRAYToDecimal(collateralConfig.getDebtAccumulatedRate(poolId))
 
     pool.save()

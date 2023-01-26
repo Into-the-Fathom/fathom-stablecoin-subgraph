@@ -14,9 +14,10 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 import { Constants } from "./Utils/Constants";
+import { addresses } from "../config/addresses";
 
 export function newPositionHandler(event: LogNewPosition): void {
-    let positionManager = PositionManager.bind(Address.fromString(Constants.ADDR_POSITION_MANAGER))
+    let positionManager = PositionManager.bind(Address.fromString(addresses.PositionManager))
     let positionAddress = positionManager.positions(event.params._positionId)
     let poolId = positionManager.collateralPools(event.params._positionId)
 
@@ -28,7 +29,7 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.collateralPool = poolId
     position.collateralPoolName = poolId.toString()
     position.lockedCollateral = BigDecimal.fromString('0')
-    position.debtShare = BigDecimal.fromString('0')
+    position.debtShare = BigInt.fromString('0')
     position.safetyBuffer = BigDecimal.fromString('1')
     position.safetyBufferInPercent = BigDecimal.fromString('0')
     position.tvl = BigDecimal.fromString('0')
