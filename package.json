@@ -11,9 +11,9 @@
     "remove-test-cloud": "graph remove --node http://159.223.112.169:8020/ fathomapp-subgraph",
     "deploy-test-cloud": "graph deploy --node http://159.223.112.169:8020/ --ipfs http://159.223.112.169:5001 fathomapp-subgraph",
 
-    "create:apothem:local": "graph create --node http://localhost:8020/ fathomapp-subgraph subgraph.yaml",
-    "remove:apothem:local": "graph remove --node http://localhost:8020/ fathomapp-subgraph subgraph.yaml",
-    "deploy:apothem:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 --version-label v0.0.1 fathomapp-subgraph subgraph.yaml",
+    "create:local": "graph create --node http://localhost:8020/ fathomapp-subgraph subgraph.yaml",
+    "remove:local": "graph remove --node http://localhost:8020/ fathomapp-subgraph subgraph.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 --version-label v0.0.1 fathomapp-subgraph subgraph.yaml",
 
     "prep:addresses:apothem": "ts-node config/apothemAddressScript.ts && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem": "yarn clean && yarn prep:addresses:apothem && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"

@@ -26,20 +26,20 @@ Prepare the subgraph
 yarn prep:apothem
 ```
 
-Create apothem subgraph on local graph node
+Create the subgraph on a local graph node
 
 ```sh
-yarn create:apothem:local
+yarn create:local
 ```
 
-Deploy apothem subgraph on local graph node
+Deploy the subgraph on a local graph node
 
 ```sh
-yarn deploy:apothem:local
+yarn deploy:local
 ```
 
-Remove apothem subgraph on local graph node
+Remove the subgraph on a local graph node
 
 ```sh
-yarn remove:apothem:local
+yarn remove:local
 ```
