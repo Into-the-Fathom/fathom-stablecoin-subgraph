@@ -1,0 +1,30 @@
+{
+    "chain_name": "apothem",
+    "chain_id": 51,
+    "CollateralPoolConfig": {
+        "address": "0xf004fF88E6272dAFf8d062124e30021CD9e5250F",
+        "block": 42355335,
+        "hash": "0xbebc0bab1a0f9844b86b8edf3a169bb1eef9337ac8d2684d5ae758b6521c12fe"
+    },
+    "BookKeeper": {
+        "address": "0xB3F930EdD49425a9E2Ff2F42AdcAd3A64EbeEaFE",
+        "block": 42055335,
+        "hash": "0xbebc0bab1a0f9844b86b8edf3a169bb1eef9337ac8d2684d5ae758b6521c12fe"
+    },
+    "PriceOracle": {
+        "address": "0xCCd8fcc33Ed3803FcCb84A1E651219E89d6baE48",
+        "block": 42355335,
+        "hash": "0xbebc0bab1a0f9844b86b8edf3a169bb1eef9337ac8d2684d5ae758b6521c12fe"
+    },
+    "PositionManager": {
+        "address": "0xfeFDf4Cb104BC272Ba0602f4588438551e7067F6",
+        "block": 42355335,
+        "hash": "0xbebc0bab1a0f9844b86b8edf3a169bb1eef9337ac8d2684d5ae758b6521c12fe"
+    },
+    "FixedSpreadLiquidationStrategy": {
+        "address": "0x8797FA2FB53ffA686006d39Cf2f8273a3Ebd1913",
+        "block": 42355335,
+        "hash": "0xbebc0bab1a0f9844b86b8edf3a169bb1eef9337ac8d2684d5ae758b6521c12fe"
+    }
+
+}
