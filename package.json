@@ -16,7 +16,7 @@
     "deploy:apothem:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 --version-label v0.0.1 fathomapp-subgraph subgraph.yaml",
 
     "prep:addresses:apothem": "ts-node config/apothemAddressScript.ts && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
-    "prep:apothem": "yarn prep:addresses:apothem && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
+    "prep:apothem": "yarn clean && yarn prep:addresses:apothem && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
     
   },
   "dependencies": {
