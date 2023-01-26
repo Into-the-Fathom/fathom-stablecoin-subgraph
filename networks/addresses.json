@@ -14,6 +14,9 @@
         },
         "FixedSpreadLiquidationStrategy": {
             "address": "0x8797FA2FB53ffA686006d39Cf2f8273a3Ebd1913"
+        },
+        "StableSwap": {
+            "address": "0x5AF507681d8Ac6f1aA720370Ca0B0F531A207289"
         }
     }
 }

@@ -14,6 +14,7 @@ export let addresses: Addresses = {
   PriceOracle: '{{apothem.PriceOracle.address}}',
   PositionManager: '{{apothem.PositionManager.address}}',
   FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy.address}}',
+  StableSwap: '{{apothem.StableSwap.address}}',
   blockNumber: '',
   network: '',
 }
