@@ -1,0 +1,19 @@
+{
+    "51": {
+        "CollateralPoolConfig": {
+            "address": "0xf004fF88E6272dAFf8d062124e30021CD9e5250F"
+        },
+        "BookKeeper": {
+            "address": "0xB3F930EdD49425a9E2Ff2F42AdcAd3A64EbeEaFE"
+        },
+        "PriceOracle": {
+            "address": "0xCCd8fcc33Ed3803FcCb84A1E651219E89d6baE48"
+        },
+        "PositionManager": {
+            "address": "0xfeFDf4Cb104BC272Ba0602f4588438551e7067F6"
+        },
+        "FixedSpreadLiquidationStrategy": {
+            "address": "0x8797FA2FB53ffA686006d39Cf2f8273a3Ebd1913"
+        }
+    }
+}

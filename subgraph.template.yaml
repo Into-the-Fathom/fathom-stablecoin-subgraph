@@ -9,8 +9,8 @@ dataSources:
     network: mainnet
     source:
       abi: CollateralPoolConfig
-      address: '{{CollateralPoolConfig.address}}'
-      startBlock: {{CollateralPoolConfig.block}}
+      address: '{{CollateralPoolConfig}}'
+      startBlock: {{blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -36,8 +36,8 @@ dataSources:
     network: mainnet
     source:
       abi: BookKeeper
-      address: '{{BookKeeper.address}}'
-      startBlock: {{BookKeeper.block}}
+      address: '{{BookKeeper}}'
+      startBlock: {{blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -61,8 +61,8 @@ dataSources:
     network: mainnet
     source:
       abi: PriceOracle
-      address: '{{PriceOracle.address}}'
-      startBlock: {{PriceOracle.block}} 
+      address: '{{PriceOracle}}'
+      startBlock: {{blockNumber}} 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -81,8 +81,8 @@ dataSources:
     network: mainnet
     source:
       abi: PositionManager
-      address: '{{PositionManager.address}}'
-      startBlock: {{PositionManager.block}} 
+      address: '{{PositionManager}}'
+      startBlock: {{blockNumber}} 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -104,8 +104,8 @@ dataSources:
     network: mainnet
     source:
       abi: FixedSpreadLiquidationStrategy
-      address: '{{FixedSpreadLiquidationStrategy.address}}'
-      startBlock: {{FixedSpreadLiquidationStrategy.block}} 
+      address: '{{FixedSpreadLiquidationStrategy}}'
+      startBlock: {{blockNumber}} 
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6

@@ -6,6 +6,7 @@ import {
 import {CollateralPoolConfig} from "../generated/CollateralPoolConfig/CollateralPoolConfig"
 import { Position, Pool, User} from "../generated/schema"
 import { log } from '@graphprotocol/graph-ts'
+import { addresses } from "../config/addresses"
 
 
 import {
@@ -16,7 +17,7 @@ import {
 import { Constants } from "./Utils/Constants";
 
 export function newPositionHandler(event: LogNewPosition): void {
-    let positionManager = PositionManager.bind(Address.fromString(Constants.ADDR_POSITION_MANAGER))
+    let positionManager = PositionManager.bind(Address.fromString(addresses.PositionManager))
     let positionAddress = positionManager.positions(event.params._positionId)
     let poolId = positionManager.collateralPools(event.params._positionId)
 
