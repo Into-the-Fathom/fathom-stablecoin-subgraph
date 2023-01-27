@@ -36,33 +36,39 @@ export function adjustPositionHandler(
     let position = Position.load(event.params._positionAddress.toHexString())
     if(position!=null && pool!=null){
         position.lockedCollateral =  event.params._lockedCollateral.toBigDecimal().div(Constants.WAD.toBigDecimal())
-        position.debtShare =  Constants.divByRAD(event.params._positionDebtValue)
+        position.debtShare =  Constants.divByRADToDecimal(event.params._positionDebtValue)
         position.tvl = position.lockedCollateral.times(pool.collateralPrice)
 
-        //TODO: Review 'closed' and 'liquidated' checks here
-        if(position.debtShare.equals(BigInt.fromI32(0)) && position.positionStatus != 'closed' && position.positionStatus != 'liquidated'){
-          position.positionStatus = 'closed'
+        //If position debtshare and collateral both zero.. mark it as closed..
+        if(position.debtShare.equals(BigDecimal.fromString('0')) && 
+             position.lockedCollateral.equals(BigDecimal.fromString('0')) && 
+             position.positionStatus != 'closed'){
+              
+             //Reset the position data 
+             position.positionStatus = 'closed'
+             position.liquidationPrice = BigDecimal.fromString('0')
+             position.safetyBuffer = BigDecimal.fromString('0')
+             position.safetyBufferInPercent = BigDecimal.fromString('0')
 
-          // decrement user position count
-          let user = User.load(position.userAddress.toHexString())
-          if (user != null) {
-            user.activePositionsCount = user.activePositionsCount.minus(BigInt.fromString('1'))
-            user.save()
-          }
+              // decrement user position count
+              let user = User.load(position.userAddress.toHexString())
+              if (user != null) {
+                user.activePositionsCount = user.activePositionsCount.minus(BigInt.fromString('1'))
+                user.save()
+              }
         }
 
         //Update the liquidation price
         //TODO: Can we put this calculationin smart contracts
         if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
                              position.lockedCollateral.gt(BigDecimal.fromString('0'))){
-                              
-           let collateralAvailableToWithdraw = (
+          
+          let collateralAvailableToWithdraw = (
                                                 pool.priceWithSafetyMargin.times(
-                                                    position.lockedCollateral).minus(position.debtShare.toBigDecimal())
-                                                )
-                                                .div(pool.priceWithSafetyMargin)
-                                                
-           position.liquidationPrice = pool.collateralPrice.minus(
+                                                position.lockedCollateral).minus(position.debtShare)
+                                              ).div(pool.priceWithSafetyMargin)
+
+          position.liquidationPrice = pool.collateralPrice.minus(
                                           (
                                             collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
                                             .div(position.lockedCollateral

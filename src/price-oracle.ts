@@ -26,16 +26,38 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         // let _priceWithSafetyMargin = event.params._priceWithSafetyMargin
         for (let i = 0; i < pool.positions.length; ++i) {
             let pos  = Position.load(pool.positions[i])
-            if(pos != null && pos.debtShare.gt(BigInt.fromI32(0))){
+            //TODO: Check if below check can be simplified with closed position status
+            if(pos != null && pos.debtShare.notEqual(BigDecimal.fromString('0'))
+                            && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
                 let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
-                let debtValue = pos.debtShare.toBigDecimal()
+                let debtValue = pos.debtShare
                 pos.safetyBuffer = collateralValue.ge(debtValue) ? collateralValue.minus(debtValue) : BigDecimal.fromString('0')
 
                 //Check if position is unsafe or not
-                if(pos.safetyBuffer.equals(BigDecimal.fromString('0')) && pos.debtShare.gt(BigInt.fromI32(0)) && pos.positionStatus != "liquidated"){
+                if(pos.safetyBuffer.equals(BigDecimal.fromString('0'))){
                     pos.positionStatus = 'unsafe'
+                }else{
+                    pos.positionStatus = 'safe'
                 }
 
+                if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
+                            pos.lockedCollateral.gt(BigDecimal.fromString('0'))){
+                              
+                       let collateralAvailableToWithdraw = (
+                                                pool.priceWithSafetyMargin.times(
+                                                    pos.lockedCollateral).minus(pos.debtShare)
+                                                )
+                                                .div(pool.priceWithSafetyMargin)
+                                                
+                        // pos.liquidationPrice = pool.collateralPrice.minus(
+                        //                     (
+                        //                         collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
+                        //                         .div(pos.lockedCollateral
+                        //                     )
+                        //                 )
+
+                        pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
+                }
 
                 pos.tvl = pos.lockedCollateral.times(pool.collateralPrice) 
                 pos.save()

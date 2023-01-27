@@ -1,13 +1,12 @@
 enum PositionStatus {
-  active
+  safe
   unsafe
   closed
-  liquidated
 }
 
 type User @entity {
   id: String!
-  address: Bytes! 
+  address: Bytes!
   activePositionsCount: BigInt!
 }
 
@@ -45,18 +44,19 @@ type Position @entity {
   collateralPoolName: String!
   positionId: BigInt!
   lockedCollateral: BigDecimal!
-  debtShare: BigInt!
+  debtShare: BigDecimal!
   safetyBuffer: BigDecimal!
   safetyBufferInPercent: BigDecimal!
   tvl: BigDecimal!
   positionStatus: PositionStatus!
   liquidationPrice: BigDecimal!
+  liquidationCount: BigInt!
   blockNumber: BigInt!
-  blockTimestamp: BigInt! 
+  blockTimestamp: BigInt!
   transaction: Bytes!
 }
 
-type SwapEvent @entity{
+type SwapEvent @entity {
   id: String!
   fee: BigInt!
   owner: Bytes!
@@ -64,11 +64,11 @@ type SwapEvent @entity{
   isStablecoinToTokenSwap: Boolean!
   isTokenToStablecoinSwap: Boolean!
   blockNumber: BigInt!
-  blockTimestamp: BigInt! 
+  blockTimestamp: BigInt!
   transaction: Bytes!
 }
 
-type StableSwapStat @entity{
+type StableSwapStat @entity {
   id: ID!
   totalTokenToStablecoinSwapEvents: BigInt!
   totalStablecoinToTokenSwapEvents: BigInt!
