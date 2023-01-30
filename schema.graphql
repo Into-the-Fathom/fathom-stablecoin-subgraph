@@ -76,3 +76,9 @@ type StableSwapStat @entity {
   tokenToStablecoinTotalSwapValue: BigInt!
   stablecoinToTokenTotalSwapValue: BigInt!
 }
+
+type AnkrCollateralTransactions @entity {
+  id: ID!
+  totalCertIn: BigInt!
+  totalCertOut: BigInt!
+}

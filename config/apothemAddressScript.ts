@@ -15,6 +15,7 @@ export let addresses: Addresses = {
   PositionManager: '{{apothem.PositionManager}}',
   FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy}}',
   StableSwap: '{{apothem.StableSwap}}',
+  AnkrCollateralAdapter: '{{apothem.AnkrCollateralAdapter}}',
   blockNumber: '',
   network: '',
 }
