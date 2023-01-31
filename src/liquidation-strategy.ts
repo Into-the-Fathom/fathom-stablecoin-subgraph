@@ -14,18 +14,18 @@
           let bookKeeper = BookKeeper.bind(Address.fromString(addresses.BookKeeper))
           let respose:BookKeeper__positionsResult = bookKeeper.positions(event.params._collateralPoolId,event.params._positionAddress)
           
-          //Get updated locked collateral and debtshare
+          //Get updated locked collateral and debtValue
           position.lockedCollateral  = respose.getLockedCollateral().toBigDecimal().div(Constants.WAD.toBigDecimal())
           
           //TODO: Calculate with debtAccumulatedRate to convert to debtValue
           let collateralConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
           let debtAccumulatedRate = Constants.divByRAYToDecimal(collateralConfig.getDebtAccumulatedRate(event.params._collateralPoolId))
-          position.debtShare  = Constants.divByRADToDecimal(respose.getDebtShare()).times(debtAccumulatedRate)
+          position.debtValue  = Constants.divByRADToDecimal(respose.getDebtShare()).times(debtAccumulatedRate)
   
-          //If lockedCollateral & debtShare both are zero that means position is confiscated..
+          //If lockedCollateral & debtValue both are zero that means position is confiscated..
           //In that case mark the position as 'closed'
           if(position.lockedCollateral.equals(Constants.DEFAULT_PRICE) && 
-                position.debtShare.equals(Constants.DEFAULT_PRICE)){
+                position.debtValue.equals(Constants.DEFAULT_PRICE)){
   
                   position.positionStatus = "closed"
   

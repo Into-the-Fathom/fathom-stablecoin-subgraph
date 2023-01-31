@@ -44,7 +44,7 @@ type Position @entity {
   collateralPoolName: String!
   positionId: BigInt!
   lockedCollateral: BigDecimal!
-  debtShare: BigDecimal!
+  debtValue: BigDecimal!
   safetyBuffer: BigDecimal!
   safetyBufferInPercent: BigDecimal!
   tvl: BigDecimal!

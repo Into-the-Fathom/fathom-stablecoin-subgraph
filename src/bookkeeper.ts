@@ -36,11 +36,11 @@ export function adjustPositionHandler(
     let position = Position.load(event.params._positionAddress.toHexString())
     if(position!=null && pool!=null){
         position.lockedCollateral =  event.params._lockedCollateral.toBigDecimal().div(Constants.WAD.toBigDecimal())
-        position.debtShare =  Constants.divByRADToDecimal(event.params._positionDebtValue)
+        position.debtValue =  Constants.divByRADToDecimal(event.params._positionDebtValue)
         position.tvl = position.lockedCollateral.times(pool.collateralPrice)
 
-        //If position debtshare and collateral both zero.. mark it as closed..
-        if(position.debtShare.equals(BigDecimal.fromString('0')) && 
+        //If position debtValue and collateral both zero.. mark it as closed..
+        if(position.debtValue.equals(BigDecimal.fromString('0')) && 
              position.lockedCollateral.equals(BigDecimal.fromString('0')) && 
              position.positionStatus != 'closed'){
               
@@ -65,7 +65,7 @@ export function adjustPositionHandler(
           
           let collateralAvailableToWithdraw = (
                                                 pool.priceWithSafetyMargin.times(
-                                                position.lockedCollateral).minus(position.debtShare)
+                                                position.lockedCollateral).minus(position.debtValue)
                                               ).div(pool.priceWithSafetyMargin)
 
           position.liquidationPrice = pool.collateralPrice.minus(

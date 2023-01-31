@@ -27,10 +27,10 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         for (let i = 0; i < pool.positions.length; ++i) {
             let pos  = Position.load(pool.positions[i])
             //TODO: Check if below check can be simplified with closed position status
-            if(pos != null && pos.debtShare.notEqual(BigDecimal.fromString('0'))
+            if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
                             && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
                 let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
-                let debtValue = pos.debtShare
+                let debtValue = pos.debtValue
                 pos.safetyBuffer = collateralValue.ge(debtValue) ? collateralValue.minus(debtValue) : BigDecimal.fromString('0')
 
                 //Check if position is unsafe or not
@@ -45,7 +45,7 @@ export function priceUpdateHandler(event: LogSetPrice): void {
                               
                        let collateralAvailableToWithdraw = (
                                                 pool.priceWithSafetyMargin.times(
-                                                    pos.lockedCollateral).minus(pos.debtShare)
+                                                    pos.lockedCollateral).minus(pos.debtValue)
                                                 )
                                                 .div(pool.priceWithSafetyMargin)
                                                 
