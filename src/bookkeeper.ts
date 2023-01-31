@@ -37,10 +37,11 @@ export function adjustPositionHandler(
     if(position!=null && pool!=null){
         position.lockedCollateral =  event.params._lockedCollateral.toBigDecimal().div(Constants.WAD.toBigDecimal())
         position.debtValue =  Constants.divByRADToDecimal(event.params._positionDebtValue)
+        position.debtShare = Constants.divByWADToDecimal(event.params._debtShare)
         position.tvl = position.lockedCollateral.times(pool.collateralPrice)
 
         //If position debtValue and collateral both zero.. mark it as closed..
-        if(position.debtValue.equals(BigDecimal.fromString('0')) && 
+        if(position.debtShare.equals(BigDecimal.fromString('0')) && 
              position.lockedCollateral.equals(BigDecimal.fromString('0')) && 
              position.positionStatus != 'closed'){
               
@@ -49,6 +50,7 @@ export function adjustPositionHandler(
              position.liquidationPrice = BigDecimal.fromString('0')
              position.safetyBuffer = BigDecimal.fromString('0')
              position.safetyBufferInPercent = BigDecimal.fromString('0')
+             position.debtValue = BigDecimal.fromString('0')
 
               // decrement user position count
               let user = User.load(position.userAddress.toHexString())

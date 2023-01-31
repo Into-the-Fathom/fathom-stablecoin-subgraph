@@ -45,6 +45,7 @@ type Position @entity {
   positionId: BigInt!
   lockedCollateral: BigDecimal!
   debtValue: BigDecimal!
+  debtShare: BigDecimal!
   safetyBuffer: BigDecimal!
   safetyBufferInPercent: BigDecimal!
   tvl: BigDecimal!
