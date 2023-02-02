@@ -8,22 +8,26 @@ export function positionLiquidationHandler(
   ): void {
     let position = Position.load(event.params._positionAddress.toHexString().toLowerCase())
     if(position!=null){
-        //Get updated locked collateral and debtValue
+          //Get updated locked collateral and debtValue
         position.lockedCollateral  = position.lockedCollateral.minus(Constants.divByWADToDecimal(event.params._collateralAmountToBeLiquidated))
+        
         position.debtShare = position.debtShare.minus(Constants.divByWADToDecimal(event.params._actualDebtShareToBeLiquidated))
         position.debtValue = position.debtValue.minus(Constants.divByRADToDecimal(event.params._actualDebtValueToBeLiquidated))
 
         //If lockedCollateral & debtValue both are zero that means position is confiscated..
-        //In that case mark the position as 'closed'
-        if(position.lockedCollateral.equals(Constants.DEFAULT_PRICE) && 
-              position.debtShare.equals(Constants.DEFAULT_PRICE)){
+        //If lockedCollateral is zero and debt is still non-zero.. then debt will be moved to baddebt and
+        //In above cases mark the position as 'closed'
+        if((position.lockedCollateral.equals(Constants.DEFAULT_PRICE) && 
+              position.debtShare.equals(Constants.DEFAULT_PRICE)) || 
+              position.lockedCollateral.equals(Constants.DEFAULT_PRICE)){
 
                 //Reset the position
                 position.positionStatus = "closed"
-                position.liquidationPrice = BigDecimal.fromString('0')
-                position.safetyBuffer = BigDecimal.fromString('0')
-                position.safetyBufferInPercent = BigDecimal.fromString('0')
-                position.debtValue = BigDecimal.fromString('0')
+                position.liquidationPrice = Constants.DEFAULT_PRICE
+                position.safetyBuffer = Constants.DEFAULT_PRICE
+                position.safetyBufferInPercent = Constants.DEFAULT_PRICE
+                position.debtShare= Constants.DEFAULT_PRICE
+                position.debtValue = Constants.DEFAULT_PRICE
 
                 //Decrease the position count for user.
                 let user = User.load(position.userAddress.toHexString())
@@ -31,6 +35,18 @@ export function positionLiquidationHandler(
                   user.activePositionsCount = user.activePositionsCount.minus(BigInt.fromString('1'))
                   user.save()
                 }
+          }
+
+          //If all debt is taken but collat is there.. position should be safe.. not closed.. 
+          //user can still manually close the position to claim the pending lockedCollateral.
+          if(position.lockedCollateral.gt(Constants.DEFAULT_PRICE) && 
+                position.debtShare.equals(Constants.DEFAULT_PRICE)){
+                  position.positionStatus = "safe"
+                  //Putting the below values in safe range...
+                  //TODO: Check if we calculate those positions dynamically
+                  position.liquidationPrice = Constants.DEFAULT_PRICE
+                  position.safetyBuffer = BigDecimal.fromString('1')
+                  position.safetyBufferInPercent = BigDecimal.fromString('1')
           }
 
         //Increase the liquidation count on a position

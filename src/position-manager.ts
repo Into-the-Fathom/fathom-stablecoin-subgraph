@@ -32,7 +32,7 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.debtShare = BigDecimal.fromString('0')
     position.debtValue = BigDecimal.fromString('0')
     position.safetyBuffer = BigDecimal.fromString('1')
-    position.safetyBufferInPercent = BigDecimal.fromString('0')
+    position.safetyBufferInPercent = BigDecimal.fromString('1')
     position.tvl = BigDecimal.fromString('0')
     position.positionStatus = 'safe'
     position.liquidationPrice = Constants.DEFAULT_PRICE
