@@ -42,7 +42,7 @@ export function adjustPositionHandler(
 
         //If position debtValue and collateral both zero.. mark it as closed..
         if(position.debtShare.equals(BigDecimal.fromString('0')) && 
-             position.lockedCollateral.equals(BigDecimal.fromString('0')) && 
+             //position.lockedCollateral.equals(BigDecimal.fromString('0')) && 
              position.positionStatus != 'closed'){
               
              //Reset the position data 
