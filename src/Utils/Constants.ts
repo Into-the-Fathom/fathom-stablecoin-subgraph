@@ -12,6 +12,10 @@ export class Constants{
         return number.div(Constants.WAD).div(BigInt.fromI64(10**9))
     }
 
+    public  static divByWADToDecimal(number: BigInt): BigDecimal {
+        return number.toBigDecimal().div(Constants.WAD.toBigDecimal())
+    }
+
     public  static divByRAYToDecimal(number: BigInt): BigDecimal {
         return number.toBigDecimal().div(Constants.WAD.toBigDecimal()).div(BigInt.fromI64(10**9).toBigDecimal())
     }

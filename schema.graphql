@@ -44,6 +44,7 @@ type Position @entity {
   collateralPoolName: String!
   positionId: BigInt!
   lockedCollateral: BigDecimal!
+  debtValue: BigDecimal!
   debtShare: BigDecimal!
   safetyBuffer: BigDecimal!
   safetyBufferInPercent: BigDecimal!
@@ -75,4 +76,10 @@ type StableSwapStat @entity {
   remainingDailySwapAmount: BigInt!
   tokenToStablecoinTotalSwapValue: BigInt!
   stablecoinToTokenTotalSwapValue: BigInt!
+}
+
+type AnkrCollateralTransactions @entity {
+  id: ID!
+  totalCertIn: BigInt!
+  totalCertOut: BigInt!
 }

@@ -145,4 +145,25 @@ dataSources:
         - event: LogSwapTokenToStablecoin(indexed address,uint256,uint256)
           handler: swapTokenToStablecoinHandler
       file: ./src/stable-swap.ts
-
+  - kind: ethereum
+    name: AnkrCollateralAdapter
+    network: mainnet
+    source:
+      abi: AnkrCollateralAdapter
+      address: '{{AnkrCollateralAdapter}}'
+      startBlock: {{blockNumber}} 
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - AnkrCollateralTransactions
+      abis:
+        - name: AnkrCollateralAdapter
+          file: ./abis/AnkrCollateralAdapter.json
+      eventHandlers:
+        - event: LogCertsInflow(uint256)
+          handler: ankrCertInFlowHandler
+        - event: LogCertsOutflow(uint256)
+          handler: ankrCertOutFlowHandler
+      file: ./src/ankr-collateral-adapter.ts

@@ -63,7 +63,7 @@ export function createLogInitCollateralPoolIdEvent(
   )
   logInitCollateralPoolIdEvent.parameters.push(
     new ethereum.EventParam(
-      "_liquidtionRatio",
+      "_liquidationRatio",
       ethereum.Value.fromUnsignedBigInt(_liquidationRatio)
     )
   )

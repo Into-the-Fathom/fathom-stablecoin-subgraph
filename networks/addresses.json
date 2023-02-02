@@ -5,6 +5,8 @@
         "PriceOracle":"0x1743AF3E4ab34f9Fe0eC073b38D1EF81d51faB5C",
         "PositionManager": "0xe071AF216Dc24e614E3a2E364c1E0c38A6526D3B",
         "FixedSpreadLiquidationStrategy": "0xf4F6a8128799bbba5d921115b41cA1355a0E7Ffe",
-        "StableSwap": "0x732a01422aC3e04365e04205CD906e2D526FC719"
+        "StableSwap": "0x732a01422aC3e04365e04205CD906e2D526FC719",
+        "AnkrCollateralAdapter": "0xD1e9f1f747209384C1713Af270C836FF15365A05",
+        "LiquidationEngine": "0xc8Aae1D9198C4E5b4D4fc2C05Cc4F9dE2659E9Cf"
     }
 }
