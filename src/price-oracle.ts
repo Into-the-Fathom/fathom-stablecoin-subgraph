@@ -48,7 +48,8 @@ export function priceUpdateHandler(event: LogSetPrice): void {
                                                     pos.lockedCollateral).minus(pos.debtValue)
                                                 )
                                                 .div(pool.priceWithSafetyMargin)
-                                                
+
+                        //TODO: Below code will be removed in future.                         
                         // pos.liquidationPrice = pool.collateralPrice.minus(
                         //                     (
                         //                         collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
