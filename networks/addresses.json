@@ -2,7 +2,7 @@
     "51": {
         "CollateralPoolConfig": "0x18547d504c781C86A46B96FDC553Ae76689AA48C",
         "BookKeeper": "0x8959B3D726081d7Ed5492280F21184eFFC0f1CCc",
-        "PriceOracle": "0xBB61d532294c9490068156139ED29C5184DAee43",
+        "PriceOracle": "0xBdbb5A1e7fD7a85761d4C29336bAd305bd9684Db",
         "PositionManager": "0x907854356a5303c622458E2bEA931fbE7865bC05",
         "FixedSpreadLiquidationStrategy": "0x983954430193cB19E3e84634ca92F82c8Ca7807f",
         "StableSwap": "0x5cc9d2878b73ECeAd6fe4358c33F2e76F52cf2a2",
