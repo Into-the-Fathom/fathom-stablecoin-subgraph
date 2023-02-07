@@ -7,10 +7,6 @@
     "build": "graph build",
     "test": "graph test",
 
-    "create:demo": "graph create --node https://graph.composer.live/ stablecoin-subgraph",
-    "remove:demo": "graph remove --node https://graph.composer.live/ stablecoin-subgraph",
-    "deploy:demo": "graph deploy --node https://graph.composer.live/ --ipfs https://graph.composer.live:5001 stablecoin-subgraph",
-
     "create:dev": "graph create --node http://159.223.112.169:8020/ stablecoin-subgraph",
     "remove:dev": "graph remove --node http://159.223.112.169:8020/ stablecoin-subgraph",
     "deploy:dev": "graph deploy --node http://159.223.112.169:8020/ --ipfs http://159.223.112.169:5001 stablecoin-subgraph",
