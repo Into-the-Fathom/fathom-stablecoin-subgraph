@@ -35,7 +35,6 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.safetyBufferInPercent = BigDecimal.fromString('1')
     position.tvl = BigDecimal.fromString('0')
     position.positionStatus = 'safe'
-    position.liquidationPrice = Constants.DEFAULT_PRICE
     position.liquidationCount = BigInt.fromI32(0)
     position.blockNumber = event.block.number
     position.blockTimestamp = event.block.timestamp
