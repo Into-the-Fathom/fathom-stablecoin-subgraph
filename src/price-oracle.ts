@@ -18,7 +18,7 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         }
 
         pool.priceWithSafetyMargin = Constants.divByRAYToDecimal(event.params._priceWithSafetyMargin)
-        pool.rawPrice = Constants.divByWADToDecimal(event.params._rawPrice)
+        pool.rawPrice = Constants.divByWADToDecimal(BigInt.fromUnsignedBytes(event.params._rawPrice))
         pool.tvl = pool.lockedCollateral.times(pool.collateralPrice)
         pool.save()
 
