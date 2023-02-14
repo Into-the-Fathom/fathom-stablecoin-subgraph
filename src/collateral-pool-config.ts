@@ -24,6 +24,7 @@ export function handleLogInitCollateralPoolId(
     pool.collateralPrice = Constants.DEFAULT_PRICE
     pool.collateralLastPrice = Constants.DEFAULT_PRICE
     pool.priceWithSafetyMargin = Constants.DEFAULT_PRICE
+    pool.rawPrice = Constants.DEFAULT_PRICE
     pool.totalBorrowed = BigInt.fromI32(0)
     pool.tvl = BigDecimal.fromString('0')
     pool.totalAvailable = Constants.divByRAD(event.params._debtCeiling) 
