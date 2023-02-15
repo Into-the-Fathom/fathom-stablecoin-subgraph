@@ -18,7 +18,7 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         }
 
         pool.priceWithSafetyMargin = Constants.divByRAYToDecimal(event.params._priceWithSafetyMargin)
-        pool.rawPrice = Constants.divByWADToDecimal(BigInt.fromUnsignedBytes(event.params._rawPrice))
+        pool.rawPrice = Constants.divByWADToDecimal(event.params._rawPriceUint)
         pool.tvl = pool.lockedCollateral.times(pool.collateralPrice)
         pool.save()
 
@@ -49,14 +49,6 @@ export function priceUpdateHandler(event: LogSetPrice): void {
                                                     pos.lockedCollateral).minus(pos.debtValue)
                                                 )
                                                 .div(pool.priceWithSafetyMargin)
-
-                        //TODO: Below code will be removed in future.                         
-                        // pos.liquidationPrice = pool.collateralPrice.minus(
-                        //                     (
-                        //                         collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
-                        //                         .div(pos.lockedCollateral
-                        //                     )
-                        //                 )
 
                         pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
                 }

@@ -23,7 +23,6 @@ export function positionLiquidationHandler(
 
                 //Reset the position
                 position.positionStatus = "closed"
-                position.liquidationPrice = Constants.DEFAULT_PRICE
                 position.safetyBuffer = Constants.DEFAULT_PRICE
                 position.safetyBufferInPercent = Constants.DEFAULT_PRICE
                 position.debtShare= Constants.DEFAULT_PRICE
@@ -44,7 +43,6 @@ export function positionLiquidationHandler(
                   position.positionStatus = "safe"
                   //Putting the below values in safe range...
                   //TODO: Check if we calculate those positions dynamically
-                  position.liquidationPrice = Constants.DEFAULT_PRICE
                   position.safetyBuffer = BigDecimal.fromString('1')
                   position.safetyBufferInPercent = BigDecimal.fromString('1')
           }
