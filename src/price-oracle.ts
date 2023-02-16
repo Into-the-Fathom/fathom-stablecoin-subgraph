@@ -10,11 +10,11 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         //Price is not set yet...
         if(pool.collateralPrice == Constants.DEFAULT_PRICE && 
             pool.collateralLastPrice == Constants.DEFAULT_PRICE){
-                pool.collateralPrice = pool.collateralLastPrice = event.params._rawPriceUint.div(Constants.WAD).toBigDecimal()
+                pool.collateralPrice = pool.collateralLastPrice = Constants.divByWADToDecimal(event.params._rawPriceUint)
         }else{
             //Assign the price to old price and then update the current price to latest.
             pool.collateralLastPrice = pool.collateralPrice
-            pool.collateralPrice = event.params._rawPriceUint.div(Constants.WAD).toBigDecimal()
+            pool.collateralPrice = Constants.divByWADToDecimal(event.params._rawPriceUint)
         }
 
         pool.priceWithSafetyMargin = Constants.divByRAYToDecimal(event.params._priceWithSafetyMargin)
