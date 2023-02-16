@@ -1,13 +1,12 @@
 {
     "51": {
-        "CollateralPoolConfig": "0x18547d504c781C86A46B96FDC553Ae76689AA48C",
-        "BookKeeper": "0x8959B3D726081d7Ed5492280F21184eFFC0f1CCc",
-        "PriceOracle": "0xBdbb5A1e7fD7a85761d4C29336bAd305bd9684Db",
-        "PositionManager": "0x907854356a5303c622458E2bEA931fbE7865bC05",
-        "FixedSpreadLiquidationStrategy": "0x983954430193cB19E3e84634ca92F82c8Ca7807f",
-        "StableSwap": "0x5cc9d2878b73ECeAd6fe4358c33F2e76F52cf2a2",
-        "AnkrCollateralAdapter": "0x6f17da21A8Ef4735af739f881D3496274aa0FB07",
-        "LiquidationEngine": "0xB5bd3B8eaE775BA39cbC1a42B034Bba8A8da6Dfa"
-     
+        "CollateralPoolConfig": "0xBEef73F79AC92cdae71095931fCA93ac9aAA1F4f",
+        "BookKeeper": "0x39ACF9aA7af8190B00bE2Df36cC1Cf78778390ad",
+        "PriceOracle": "0x5c89b1c3727dbF3F5f5A7AFd7474854AC2912037",
+        "PositionManager": "0xa14385249806Fa27Bed76CCE444845aF97C1B5f9",
+        "FixedSpreadLiquidationStrategy": "0xA6efa710cFB6d50a8340d399565425B52D142e5a",
+        "StableSwap": "0xa47232D1c5608996D4168222c45ed17E3947a50a",
+        "AnkrCollateralAdapter": "0x61D0f739Ab0f199607024Fe589cBBdC1bB90293F",
+        "LiquidationEngine": "0x72113c4829270f6c3BEF2A51F47137f8dd812549"
     }
 }

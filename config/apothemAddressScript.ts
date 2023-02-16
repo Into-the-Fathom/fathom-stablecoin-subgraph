@@ -23,7 +23,7 @@ export let addresses: Addresses = {
 const main = (): void => {
   try {
     let output = JSON.parse(mustache.render(JSON.stringify(addresses), renameAddresses))
-    output.blockNumber = '44918924' // Block when first contract was created
+    output.blockNumber = '45328832' // Block when first contract was created
     output.network = 'apothem'
     fs.writeFileSync(__dirname + '/generatedAddresses.json', JSON.stringify(output, null, 2))
   } catch (e) {
