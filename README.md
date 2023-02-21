@@ -23,7 +23,7 @@ For apothem on a local graph node, we can use the following commands:
 Prepare the subgraph
 
 ```sh
-yarn prep:apothem
+yarn prep:apothem:{env} where env can be either dev or demo.
 ```
 
 Create the subgraph on a local graph node
