@@ -2,16 +2,16 @@
     "51": {
         "dev":{
             "addresses": {
-                "CollateralPoolConfig": "0x279750eb5799010A295119f38A32A67723a9e10F",
-                "BookKeeper": "0xf5486A08a1528f97cc7da3eED9050DB2387ADf66",
-                "PriceOracle": "0xbCB7f95718d2eB899bB16B861c1e5416EAD36264",
-                "PositionManager": "0xe485eDc3D5aba4dbEcD76a78e6c71c8F5E114F3b",
-                "FixedSpreadLiquidationStrategy": "0x754f0573a97cDEe2e47920a582C228e8b0A63a03",
-                "StableSwap": "0x08a83dcBEeB11c0272C0289a12c1D3B1E04B5208",
-                "AnkrCollateralAdapter": "0xc3c7f26ffD1cd5ec682E23C076471194DE8ce4f1",
-                "LiquidationEngine": "0x73EA9Acb76fC83c3BE5A75F5c6940EA623746Ed4"
+                "CollateralPoolConfig": "0x763546e9e90B117f34d9af960cadb757D6C83024",
+                "BookKeeper": "0xfC7669a63f28e6d02221E9023779D3bFbC2eC58f",
+                "PriceOracle": "0x2CD6D1ff0b850fEB9d5DbfFC09eaC90a59388535",
+                "PositionManager": "0xD83C1adE9B26957825A7cB82b5769965Df08D6F9",
+                "FixedSpreadLiquidationStrategy": "0x5af0534Ddb055bFA6c61Ed1D2D515641BC9b5cdc",
+                "StableSwap": "0xa21aa6F1506dF6F99cD84596a624300DFe4dAFF7",
+                "CollateralAdapter": "0xfB92d20576A642a47ec716C39F9CB8445e65C57F",
+                "LiquidationEngine": "0x51341e1820DE79E0AF59d1ac002e12Df2B1152A9"
             },
-            "blockNumber":"44784237"
+            "blockNumber":"46846800"
         },
         "demo":{
             "addresses": {
@@ -21,7 +21,7 @@
                 "PositionManager": "0xa14385249806Fa27Bed76CCE444845aF97C1B5f9",
                 "FixedSpreadLiquidationStrategy": "0xA6efa710cFB6d50a8340d399565425B52D142e5a",
                 "StableSwap": "0xa47232D1c5608996D4168222c45ed17E3947a50a",
-                "AnkrCollateralAdapter": "0x61D0f739Ab0f199607024Fe589cBBdC1bB90293F",
+                "CollateralAdapter": "0x61D0f739Ab0f199607024Fe589cBBdC1bB90293F",
                 "LiquidationEngine": "0x72113c4829270f6c3BEF2A51F47137f8dd812549"
             },
             "blockNumber":"45328832"

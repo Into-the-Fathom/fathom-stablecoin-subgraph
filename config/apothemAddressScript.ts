@@ -17,7 +17,7 @@ export let addresses: Addresses = {
   PositionManager: '{{apothem.PositionManager}}',
   FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy}}',
   StableSwap: '{{apothem.StableSwap}}',
-  AnkrCollateralAdapter: '{{apothem.AnkrCollateralAdapter}}',
+  CollateralAdapter: '{{apothem.CollateralAdapter}}',
   blockNumber: networkAddresses['51'][process.argv[2]]["blockNumber"],
   network:  networkAddresses['51']["network"],
 }

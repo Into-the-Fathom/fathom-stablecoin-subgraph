@@ -1,5 +1,5 @@
 {
-  "name": "fathomapp-subgraph",
+  "name": "fathom-stablecoin-subgraph",
   "license": "UNLICENSED",
   "scripts": {
     "clean": "rm -rf build/ generated/ config/addresses.ts config/generatedAddresses.json subgraph.yaml",

@@ -6,7 +6,7 @@ export class Addresses {
     PositionManager: string
     FixedSpreadLiquidationStrategy: string
     StableSwap: string
-    AnkrCollateralAdapter: string
+    CollateralAdapter: string
     blockNumber: string
     network: string
   }
@@ -19,7 +19,7 @@ export class Addresses {
     PositionManager: '{{PositionManager}}',
     FixedSpreadLiquidationStrategy: '{{FixedSpreadLiquidationStrategy}}',
     StableSwap: '{{StableSwap}}',
-    AnkrCollateralAdapter: '{{AnkrCollateralAdapter}}',
+    CollateralAdapter: '{{CollateralAdapter}}',
     blockNumber: '{{blockNumber}}',
     network: '{{network}}'
   }
