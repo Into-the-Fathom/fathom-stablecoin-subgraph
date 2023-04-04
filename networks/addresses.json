@@ -6,8 +6,8 @@
                 "BookKeeper": "0xd9c2BB53ce0D2e081BdF0a1c1ef564Cf5c73a7e2",
                 "PriceOracle": "0x8389cd7B50d00351a698a332bE86f9E0C6a7508B",
                 "PositionManager": "0xC3A256F3Eff0F5c8a26858BF65de325aEF6eBA37",
-                "FixedSpreadLiquidationStrategy": "0x3BaF6aA00AAc67e47D1AD27945ea3C11495eaf62",
-                "StableSwap": "0x26D8F8052f6B50B0f4bC4245E318D4Ee5fCEAEDB",
+                "FixedSpreadLiquidationStrategy": "0x81348e88FcE4952deddF8b74f5Cb3542505f01A7",
+                "StableSwap": "0xb8100657938BfAdCb05D6b42e9C774256c6f51BE",
                 "CollateralAdapter": "0x6f14B431329F5a38F09f3A04a9b597d29345BBA7",
                 "LiquidationEngine": "0xCC9809C1C67100D0079853aD8005139fcf1e6cE7"
             },
