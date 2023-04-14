@@ -1,5 +1,5 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
-import {LogAdjustPosition, LogSetTotalDebtCeiling, stablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
+import {LogAdjustPosition, LogSetTotalDebtCeiling, StablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
 import {Pool, ProtocolStat, Position, User } from "../generated/schema"
 import { Constants } from "./Utils/Constants"
 
@@ -93,7 +93,7 @@ export function adjustPositionHandler(
   }
 
   export function stablecoinIssuedAmountHandler(
-    event: stablecoinIssuedAmount
+    event: StablecoinIssuedAmount
   ): void {
     let poolId = event.params._collateralPoolId
     let pool  = Pool.load(poolId.toHexString())

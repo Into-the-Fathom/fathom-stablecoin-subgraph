@@ -20,13 +20,13 @@ dataSources:
         - name: CollateralPoolConfig
           file: ./abis/CollateralPoolConfig.json
       eventHandlers:
-        - event: LogInitCollateralPoolId(bytes32,uint256,uint256,uint256,address)
+        - event: LogInitCollateralPoolId(indexed bytes32,uint256,uint256,uint256,address)
           handler: handleLogInitCollateralPoolId
-        - event: LogSetDebtCeiling(indexed address,bytes32,uint256)
+        - event: LogSetDebtCeiling(indexed address,indexed bytes32,uint256)
           handler: handleLogSetDebtCeiling
-        - event: LogSetLiquidationRatio(indexed address,bytes32,uint256) 
+        - event: LogSetLiquidationRatio(indexed address,indexed bytes32,uint256) 
           handler: handleSetLiquidationRatio
-        - event: LogSetDebtAccumulatedRate(indexed address,bytes32,uint256) 
+        - event: LogSetDebtAccumulatedRate(indexed address,indexed bytes32,uint256) 
           handler: handleSetDebtAccumulatedRate
       file: ./src/collateral-pool-config.ts
   - kind: ethereum
@@ -47,11 +47,11 @@ dataSources:
         - name: BookKeeper
           file: ./abis/BookKeeper.json
       eventHandlers:
-        - event: LogAdjustPosition(indexed address,bytes32,address,uint256,uint256,uint256,int256,int256)
+        - event: LogAdjustPosition(indexed address,indexed bytes32,indexed address,uint256,uint256,uint256,int256,int256)
           handler: adjustPositionHandler
         - event: LogSetTotalDebtCeiling(indexed address,uint256)
           handler: setTotalDebtCeilingHanlder
-        - event: stablecoinIssuedAmount(uint256,bytes32,uint256)
+        - event: StablecoinIssuedAmount(uint256,indexed bytes32,uint256)
           handler: stablecoinIssuedAmountHandler
       file: ./src/bookkeeper.ts
   - kind: ethereum
@@ -71,7 +71,7 @@ dataSources:
         - name: PriceOracle
           file: ./abis/PriceOracle.json
       eventHandlers:
-        - event: LogSetPrice(bytes32,bytes32,uint256,uint256)
+        - event: LogSetPrice(indexed bytes32,bytes32,uint256,uint256)
           handler: priceUpdateHandler
       file: ./src/price-oracle.ts
   - kind: ethereum
