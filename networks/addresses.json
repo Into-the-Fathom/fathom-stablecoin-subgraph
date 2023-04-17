@@ -2,16 +2,16 @@
     "51": {
         "dev":{
             "addresses": {
-                "CollateralPoolConfig": "0x52977D7ab61E60208b660bBcC41E7D71CD6B8e83",
-                "BookKeeper": "0xe82F1540a6b4A1A30F879Ea299c1C9cC8EC2C82f",
-                "PriceOracle": "0x8E847E6b7555759b6861D68566406FF4bD5f8AeE",
-                "PositionManager": "0x3Cc6378d25818b4A80DFC7199a4256bf78b7023f",
-                "FixedSpreadLiquidationStrategy": "0x39C81BE8557C18Ccb300828f45fB11F69b0FF75A",
-                "StableSwap": "0xD65Fc1879dc9af22550067963CfbE16AcF8a923A",
-                "CollateralAdapter": "0xc5c00C9C90DdA479f089A83BAee7C9370F2b3a39",
-                "LiquidationEngine": "0xc6E62AA2A1BC8ac0D0F8367c04842aaFbfE7E9D5"
+                "CollateralPoolConfig": "0xa79D2EF104ce26d73F78ADE59bc842015E994670",
+                "BookKeeper": "0x87Bc448011E5009F1E1AB20eA9C65321b2dFeA2C",
+                "PriceOracle": "0xC60a625bCDcAaC9dAa6Ab0c1Cdc7aC3eE4Da29D5",
+                "PositionManager": "0x7aD16A04cC612d2Ab1fDE424B214a3C36c49E61b",
+                "FixedSpreadLiquidationStrategy": "0xbd18976B0bcA92A983e3E8Bf9Bc7B70475e4F510",
+                "StableSwap": "0xB95b0684096bD97C702A8f9A7386a93f152dc47d",
+                "CollateralAdapter": "0x5eC92B5E8527d0C28282d230059E48093aaE9f82",
+                "LiquidationEngine": "0xa80149Fd9f6c7497394238658F0765deD0aB4B37"
             },
-            "blockNumber":"47784000"
+            "blockNumber":"47900000"
         },
         "demo":{
             "addresses": {

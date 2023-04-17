@@ -32254,12 +32254,12 @@
     },
     "networks": {
         "51": {
-            "address": "0xC871B21C551EE18a21d3dB574144Cb4DEb434D15",
-            "transactionHash": "0xc45423ee3faf4e380407095314a4bfaf28a076f7502247ef509143cfcadbb9f5"
+            "address": "0xfbFCcd83c5A45F64c875441fa86fF6f55495b05C",
+            "transactionHash": "0xf20f463dfbc39fc93eee76af3336b4155d697aa87c3a1f5becfc421d544b5c25"
         }
     },
     "schemaVersion": "3.4.10",
-    "updatedAt": "2023-04-14T12:23:31.007Z",
+    "updatedAt": "2023-04-17T09:23:54.943Z",
     "devdoc": {
         "kind": "dev",
         "methods": {

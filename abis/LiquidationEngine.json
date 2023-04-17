@@ -30097,12 +30097,12 @@
     },
     "networks": {
         "51": {
-            "address": "0xa380051B785C6a2C5814c775FcC23BC7fc7eef38",
-            "transactionHash": "0x2846176c4b7ed33c4fa7b26e98f974e50f9f143415a47a0c9f82aed42b1b0871"
+            "address": "0xF4343f4846F697eca5393b794c1d4dECCFeED6a3",
+            "transactionHash": "0x369828b613b1cc913247731961270b0bad775f8450581fdf42ceff83182914ec"
         }
     },
     "schemaVersion": "3.4.10",
-    "updatedAt": "2023-04-14T12:23:30.867Z",
+    "updatedAt": "2023-04-17T09:23:54.855Z",
     "devdoc": {
         "kind": "dev",
         "methods": {

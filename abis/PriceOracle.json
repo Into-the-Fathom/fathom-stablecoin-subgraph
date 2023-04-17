@@ -14172,12 +14172,12 @@
     },
     "networks": {
         "51": {
-            "address": "0x457D5E3992D6E120DD8027b4fa18eBb0e5538550",
-            "transactionHash": "0x0a4811f83fd7d1a555106620a628a5fc01f75b28e11e43a0bd7fa129f8bf9286"
+            "address": "0xF51fAfc450163CD8277c495002C315Ad927B3CC4",
+            "transactionHash": "0xe1429675d65596b40c5999f3d7db964512514a2088db28304b671cbd0d81054e"
         }
     },
     "schemaVersion": "3.4.10",
-    "updatedAt": "2023-04-14T12:23:30.875Z",
+    "updatedAt": "2023-04-17T09:23:54.865Z",
     "devdoc": {
         "kind": "dev",
         "methods": {

@@ -37285,12 +37285,12 @@
     },
     "networks": {
         "51": {
-            "address": "0x31374dABbfC000Dfcb976F2C073E918ad4682cb9",
-            "transactionHash": "0x76b7775799de8808241a9094fd9cefc0d0eea247a95e0b377db89bbddc003924"
+            "address": "0x61FFF72b9b6057D22A2f9C0Ee75d002c30cdbA0d",
+            "transactionHash": "0xfc4cd5b0953fa83b4daf087f1b64712f5806ecd5e765b1205d6be23f4c46d4fc"
         }
     },
     "schemaVersion": "3.4.10",
-    "updatedAt": "2023-04-14T12:23:30.844Z",
+    "updatedAt": "2023-04-17T09:23:54.809Z",
     "devdoc": {
         "kind": "dev",
         "methods": {

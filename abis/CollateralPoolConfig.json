@@ -27643,12 +27643,12 @@
     },
     "networks": {
         "51": {
-            "address": "0xBEB4D33884e7fCE0404a8Fa79A33692aDbc935f6",
-            "transactionHash": "0x8590788aaf3f86fb660dd544a56251926a987054c6669fa039609f99f899c5d1"
+            "address": "0x4BFd8F24043DbDCe0922a6662B389A4d8F44a61C",
+            "transactionHash": "0xbe2ef069efb7627a89a59c37bf6b36c6ecd01ef9db8cef5aed6fd7d0c3289d1e"
         }
     },
     "schemaVersion": "3.4.10",
-    "updatedAt": "2023-04-14T12:23:31.001Z",
+    "updatedAt": "2023-04-17T09:23:54.936Z",
     "devdoc": {
         "kind": "dev",
         "methods": {
