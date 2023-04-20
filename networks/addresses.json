@@ -26,6 +26,19 @@
             },
             "blockNumber":"47996460"
         },
+        "qa":{
+            "addresses": {
+                "CollateralPoolConfig": "0x854BB0Db69527FF9BC7584fcB472514e5a87180C",
+                "BookKeeper": "0x9c1976CbbbBD4D7B166dC784bB9AeFcA3EDDc815",
+                "PriceOracle": "0x0dc81AD81A6A27c977AD0e53033835f504E436ec",
+                "PositionManager": "0xFDb12e1f3a0FBF10431fF5Ac77b9C9BFD60DC7fb",
+                "FixedSpreadLiquidationStrategy": "0x679998BC37d2d07bbB3fE73f3447262034EF4055",
+                "StableSwap": "0xDb2Af5dAB19D2cf08bBc41C115dD9ce5C98CaCbE",
+                "CollateralAdapter": "0x0eA0787dDC60ff852bC8bfD30A0B68CA2eED3B7C",
+                "LiquidationEngine": "0xF5011AE3d3F9029848533bC2CD4290D04C7ddf89"
+            },
+            "blockNumber":"47996460"
+        },
         "network":"apothem"
     }
 }
