@@ -35347,12 +35347,12 @@
     },
     "networks": {
         "50": {
-            "address": "0xa66465A27966C9Ba97d3e8aC4129D3636AB9f6A6",
-            "transactionHash": "0x1123a28e7e8bb159d9a1cb108c443b7d36e6e9e15d016bbb73d5d9a8a4882ede"
+            "address": "0x6352146dCDfeb49aa1F41452754a082F14AD745B",
+            "transactionHash": "0x884d40175c3ecfe18a42125df33e91f173af99ab58fe0213ff8bca020ef1b40b"
         }
     },
     "schemaVersion": "3.4.13",
-    "updatedAt": "2023-04-27T21:05:38.605Z",
+    "updatedAt": "2023-04-28T08:02:27.634Z",
     "devdoc": {
         "kind": "dev",
         "methods": {
