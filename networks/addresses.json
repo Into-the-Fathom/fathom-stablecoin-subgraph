@@ -1,4 +1,19 @@
 {
+    "50": {
+        "xinfin":{
+            "addresses": {
+                "CollateralPoolConfig": "0x0ccDdD5828cf81Ec0b1b14220a108Ea03588FC61",
+                "BookKeeper": "0xebeC85880EE91BC8380ba3423fEFBd4Ed78c1560",
+                "PriceOracle": "0xc0067B6482A9C483DD433CF9FbC99D9956aADaFb",
+                "PositionManager": "0x291a33eFc78a63c08AaD898C1Fd7d489C33c1b98",
+                "FixedSpreadLiquidationStrategy": "0xE4C61cAf485548CcCa56B392FC449EF0D93D2B53",
+                "StableSwap": "0xB0584F904470fB99E0d019F543E138A1b1F14850",
+                "CollateralAdapter": "0x21b8165Cc6B9d0FF769274C58ed0495572D3dba7",
+                "LiquidationEngine": "0xE1895474E1254BA8FC4d3580A0DEf9B0e61c5a75"
+            },
+            "blockNumber":"59776353"    
+        }
+    },
     "51": {
         "dev":{
             "addresses": {

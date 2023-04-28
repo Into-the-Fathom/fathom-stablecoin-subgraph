@@ -18,7 +18,10 @@
     "prep:apothem:demo": "yarn clean && yarn prep:addresses:apothem:demo && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
  
     "prep:addresses:apothem:qa": "ts-node config/apothemAddressScript.ts qa && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
-    "prep:apothem:qa": "yarn clean && yarn prep:addresses:apothem:qa && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
+    "prep:apothem:qa": "yarn clean && yarn prep:addresses:apothem:qa && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
+
+    "prep:addresses:xinfin:xinfin": "ts-node config/xinfinAddressScript.ts xinfin && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
+    "prep:xinfin:xinfin": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
 
   },
   "dependencies": {
