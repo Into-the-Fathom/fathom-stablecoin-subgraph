@@ -71,7 +71,7 @@ dataSources:
         - name: PriceOracle
           file: ./abis/PriceOracle.json
       eventHandlers:
-        - event: LogSetPrice(indexed bytes32,bytes32,uint256,uint256)
+        - event: LogSetPrice(indexed bytes32,uint256,uint256)
           handler: priceUpdateHandler
       file: ./src/price-oracle.ts
   - kind: ethereum
