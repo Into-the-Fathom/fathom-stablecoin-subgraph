@@ -1,5 +1,5 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
-import {LogAdjustPosition, LogSetTotalDebtCeiling, stablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
+import {LogAdjustPosition, LogSetTotalDebtCeiling, StablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
 import {Pool, ProtocolStat, Position, User } from "../generated/schema"
 import { Constants } from "./Utils/Constants"
 
@@ -47,7 +47,6 @@ export function adjustPositionHandler(
               
              //Reset the position data 
              position.positionStatus = 'closed'
-             position.liquidationPrice = BigDecimal.fromString('0')
              position.safetyBuffer = BigDecimal.fromString('0')
              position.safetyBufferInPercent = BigDecimal.fromString('0')
              position.debtValue = BigDecimal.fromString('0')
@@ -69,13 +68,6 @@ export function adjustPositionHandler(
                                                 pool.priceWithSafetyMargin.times(
                                                 position.lockedCollateral).minus(position.debtValue)
                                               ).div(pool.priceWithSafetyMargin)
-
-          position.liquidationPrice = pool.collateralPrice.minus(
-                                          (
-                                            collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
-                                            .div(position.lockedCollateral
-                                          )
-                                        )
 
             position.safetyBufferInPercent = collateralAvailableToWithdraw.div(position.lockedCollateral)
         }
@@ -101,7 +93,7 @@ export function adjustPositionHandler(
   }
 
   export function stablecoinIssuedAmountHandler(
-    event: stablecoinIssuedAmount
+    event: StablecoinIssuedAmount
   ): void {
     let poolId = event.params._collateralPoolId
     let pool  = Pool.load(poolId.toHexString())

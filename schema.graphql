@@ -21,6 +21,7 @@ type Pool @entity {
   collateralPrice: BigDecimal!
   collateralLastPrice: BigDecimal!
   priceWithSafetyMargin: BigDecimal!
+  rawPrice: BigDecimal!
   debtAccumulatedRate: BigDecimal!
   totalBorrowed: BigInt!
   totalAvailable: BigInt!
@@ -50,7 +51,6 @@ type Position @entity {
   safetyBufferInPercent: BigDecimal!
   tvl: BigDecimal!
   positionStatus: PositionStatus!
-  liquidationPrice: BigDecimal!
   liquidationCount: BigInt!
   blockNumber: BigInt!
   blockTimestamp: BigInt!
@@ -76,10 +76,4 @@ type StableSwapStat @entity {
   remainingDailySwapAmount: BigInt!
   tokenToStablecoinTotalSwapValue: BigInt!
   stablecoinToTokenTotalSwapValue: BigInt!
-}
-
-type AnkrCollateralTransactions @entity {
-  id: ID!
-  totalCertIn: BigInt!
-  totalCertOut: BigInt!
 }

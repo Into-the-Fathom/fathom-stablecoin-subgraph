@@ -10,15 +10,15 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         //Price is not set yet...
         if(pool.collateralPrice == Constants.DEFAULT_PRICE && 
             pool.collateralLastPrice == Constants.DEFAULT_PRICE){
-                pool.collateralPrice = pool.collateralLastPrice = event.params._rawPriceUint.div(Constants.WAD).toBigDecimal()
+                pool.collateralPrice = pool.collateralLastPrice = Constants.divByWADToDecimal(event.params._rawPrice)
         }else{
             //Assign the price to old price and then update the current price to latest.
             pool.collateralLastPrice = pool.collateralPrice
-            pool.collateralPrice = event.params._rawPriceUint.div(Constants.WAD).toBigDecimal()
+            pool.collateralPrice = Constants.divByWADToDecimal(event.params._rawPrice)
         }
 
         pool.priceWithSafetyMargin = Constants.divByRAYToDecimal(event.params._priceWithSafetyMargin)
-        pool.rawPrice = Constants.divByWADToDecimal(BigInt.fromUnsignedBytes(event.params._rawPrice))
+        pool.rawPrice = Constants.divByWADToDecimal(event.params._rawPrice)
         pool.tvl = pool.lockedCollateral.times(pool.collateralPrice)
         pool.save()
 
@@ -49,14 +49,6 @@ export function priceUpdateHandler(event: LogSetPrice): void {
                                                     pos.lockedCollateral).minus(pos.debtValue)
                                                 )
                                                 .div(pool.priceWithSafetyMargin)
-
-                        //TODO: Below code will be removed in future.                         
-                        // pos.liquidationPrice = pool.collateralPrice.minus(
-                        //                     (
-                        //                         collateralAvailableToWithdraw.times(pool.priceWithSafetyMargin))
-                        //                         .div(pos.lockedCollateral
-                        //                     )
-                        //                 )
 
                         pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
                 }
