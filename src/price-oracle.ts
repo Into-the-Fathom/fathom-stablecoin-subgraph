@@ -1,4 +1,6 @@
-import { BigDecimal, BigInt, ByteArray } from "@graphprotocol/graph-ts";
+import { Address, BigDecimal, BigInt, ByteArray } from "@graphprotocol/graph-ts";
+import { addresses } from "../config/addresses";
+import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
 import { Pool, Position } from "../generated/schema";
 import { Constants } from "./Utils/Constants";
@@ -23,7 +25,9 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         pool.save()
 
         //Update the safety buffer for positions
-        let _debtAccumulatedRate = pool.debtAccumulatedRate
+        
+        let collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
+        let _debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
         // let _priceWithSafetyMargin = event.params._priceWithSafetyMargin
         for (let i = 0; i < pool.positions.length; ++i) {
             let pos  = Position.load(pool.positions[i])
@@ -31,8 +35,8 @@ export function priceUpdateHandler(event: LogSetPrice): void {
             if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
                             && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
                 let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
-                let debtValue = pos.debtValue
-                pos.safetyBuffer = collateralValue.ge(debtValue) ? collateralValue.minus(debtValue) : BigDecimal.fromString('0')
+                pos.debtValue = pos.debtShare.times(_debtAccumulatedRate)
+                pos.safetyBuffer = collateralValue.ge(pos.debtValue) ? collateralValue.minus(pos.debtValue) : BigDecimal.fromString('0')
 
                 //Check if position is unsafe or not
                 if(pos.safetyBuffer.equals(BigDecimal.fromString('0'))){
