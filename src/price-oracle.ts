@@ -1,4 +1,4 @@
-import { Address, BigDecimal, BigInt, ByteArray } from "@graphprotocol/graph-ts";
+import { Address, BigDecimal, BigInt, ByteArray, log } from "@graphprotocol/graph-ts";
 import { addresses } from "../config/addresses";
 import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
@@ -28,6 +28,7 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         
         let collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
         let _debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
+
         // let _priceWithSafetyMargin = event.params._priceWithSafetyMargin
         for (let i = 0; i < pool.positions.length; ++i) {
             let pos  = Position.load(pool.positions[i])
