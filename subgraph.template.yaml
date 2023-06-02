@@ -70,6 +70,8 @@ dataSources:
       abis:
         - name: PriceOracle
           file: ./abis/PriceOracle.json
+        - name: CollateralPoolConfig
+          file: ./abis/CollateralPoolConfig.json
       eventHandlers:
         - event: LogSetPrice(indexed bytes32,uint256,uint256)
           handler: priceUpdateHandler
