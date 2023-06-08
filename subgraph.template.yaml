@@ -67,6 +67,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Pool
+        - ProtocolStat
       abis:
         - name: PriceOracle
           file: ./abis/PriceOracle.json
