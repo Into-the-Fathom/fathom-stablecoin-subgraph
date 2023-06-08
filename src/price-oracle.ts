@@ -2,7 +2,7 @@ import { Address, BigDecimal, BigInt, ByteArray, log } from "@graphprotocol/grap
 import { addresses } from "../config/addresses";
 import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
-import { Pool, Position } from "../generated/schema";
+import { Pool, Position, ProtocolStat } from "../generated/schema";
 import { Constants } from "./Utils/Constants";
 
 export function priceUpdateHandler(event: LogSetPrice): void {
@@ -62,5 +62,19 @@ export function priceUpdateHandler(event: LogSetPrice): void {
                 pos.save()
             }
         }
+
+        // Update the total TVL in protcol by adding the TVLs from all pools
+        let stats  = ProtocolStat.load(Constants.FATHOM_STATS_KEY)
+        let aggregatedTVL = BigDecimal.fromString('0')
+        if(stats != null){
+            for (let i = 0; i < stats.pools.length; ++i) {
+                let pool  = Pool.load(stats.pools[i])
+                if (pool != null){
+                    aggregatedTVL = aggregatedTVL.plus(pool.tvl)
+                }
+            }
+            stats.tvl = aggregatedTVL
+            stats.save()
+        }  
     }
 }
