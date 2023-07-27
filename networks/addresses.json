@@ -17,16 +17,16 @@
   "51": {
     "dev": {
       "addresses": {
-        "CollateralPoolConfig": "0xdffe746536D6B740A54Ec92cA4dF23dA63E6E53D",
-        "BookKeeper": "0x7F888b7e699E9e1248ddc3f39b39b4C10A0fD006",
-        "PriceOracle": "0x885582ECcfBA800e98314FcdC49B03F10000b0F7",
-        "PositionManager": "0x4031235C5B5a87db512Ea8072B6BcD35eb66049C",
-        "FixedSpreadLiquidationStrategy": "0xB9efc966FE8e942b750d54D0098a8870a3351056",
-        "StableSwap": "0x31A188FfEd12c7E2E6141E18a3b8A0e78E60249e",
-        "CollateralAdapter": "0x41E2e118fB0Fb638df556F76789092AF1368687F",
-        "LiquidationEngine": "0x76D55c034570A0aF92a9e2438c6cE80951EE1254"
+        "CollateralPoolConfig": "0xb8c792dfd859dC253F549A56602b625cc214A3Ef",
+        "BookKeeper": "0xe9f8f2B94dFA17e02ce93B9607f9694923Bde153",
+        "PriceOracle": "0x9BDcECf207d1007a03fB3aE7EE4030b4BD3b9803",
+        "PositionManager": "0x9661dCD4043eDb266a43e4Bd65DCae87dE051FD6",
+        "FixedSpreadLiquidationStrategy": "0x02ba544aF33D9eEC075b262B180Ea40BF340f494",
+        "StableSwap": "0xf64E576CF91E5c2E61d72850f8D9CF5c6c37912a",
+        "CollateralAdapter": "0x7793129dDB6de37249eF98168D989e5E2fBee76E",
+        "LiquidationEngine": "0x679C494c1E4884A2caeaAE582BFbB97C69002682"
       },
-      "blockNumber": "49245197"
+      "blockNumber": "52164638"
     },
     "demo": {
       "addresses": {
