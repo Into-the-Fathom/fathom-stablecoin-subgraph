@@ -55,5 +55,20 @@
       "blockNumber": "49242236"
     },
     "network": "apothem"
+  },
+  "31337": {
+    "hardhatNode": {
+      "addresses": {
+        "CollateralPoolConfig": "0x4F5Ea639600A01931B1370CDe99a7B1e7b6b8f6C",
+        "BookKeeper": "0x6FD3f049DF9e1886e1DFc1A034D379efaB0603CE",
+        "PriceOracle": "0xF557fBf34B785b157344167fE0D9bAb95da06843",
+        "PositionManager": "0x2fE84707e907eaB4C4E6a91CCe458E648be390Ae",
+        "FixedSpreadLiquidationStrategy": "0x66B45F20cE90D5164bf85C582002d3620C429496",
+        "StableSwap": "0x42c06188B8C03769A1F73B3f31b259271ee3B981",
+        "CollateralAdapter": "0x2fc7e65023aFF27FA61A573B5C8E3fDe3CE9ef79",
+        "LiquidationEngine": "0x6Af7c469CD476aa7b5Cf5e486CfC8260814c244C"
+      },
+      "blockNumber": "59776353"
+    }
   }
 }

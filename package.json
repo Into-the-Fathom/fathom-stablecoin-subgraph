@@ -21,8 +21,11 @@
     "prep:apothem:qa": "yarn clean && yarn prep:addresses:apothem:qa && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
 
     "prep:addresses:xinfin:xinfin": "ts-node config/xinfinAddressScript.ts xinfin && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
-    "prep:xinfin:xinfin": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
+    "prep:xinfin:xinfin": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
 
+    "prep:addresses:hardhat:hardhatNode": "ts-node config/hardhatAddressScript.ts hardhatNode && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
+    "prep:hardhat:hardhatNode": "yarn clean && yarn prep:addresses:hardhat:hardhatNode && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
+    
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.35.0",
