@@ -16,6 +16,7 @@ export let addresses: Addresses = {
   PriceOracle: '{{xinfin.PriceOracle}}',
   PositionManager: '{{xinfin.PositionManager}}',
   FixedSpreadLiquidationStrategy: '{{xinfin.FixedSpreadLiquidationStrategy}}',
+  FixedSpreadLiquidationStrategyOld: '{{xinfin.FixedSpreadLiquidationStrategyOld}}',
   StableSwap: '{{xinfin.StableSwap}}',
   CollateralAdapter: '{{xinfin.CollateralAdapter}}',
   blockNumber: networkAddresses['50'][process.argv[2]]["blockNumber"],

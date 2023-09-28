@@ -138,7 +138,7 @@ dataSources:
       entities:
         - Position
       abis:
-        - name: FixedSpreadLiquidationStrategy
+        - name: FixedSpreadLiquidationStrategyOld
           file: ./abis/FixedSpreadLiquidationStrategyOld.json
         - name: BookKeeper
           file: ./abis/BookKeeper.json

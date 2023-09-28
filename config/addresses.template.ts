@@ -5,6 +5,7 @@ export class Addresses {
     PriceOracle: string
     PositionManager: string
     FixedSpreadLiquidationStrategy: string
+    FixedSpreadLiquidationStrategyOld: string
     StableSwap: string
     CollateralAdapter: string
     blockNumber: string
@@ -18,6 +19,7 @@ export class Addresses {
     PriceOracle: '{{PriceOracle}}',
     PositionManager: '{{PositionManager}}',
     FixedSpreadLiquidationStrategy: '{{FixedSpreadLiquidationStrategy}}',
+    FixedSpreadLiquidationStrategyOld: '{{FixedSpreadLiquidationStrategyOld}}',
     StableSwap: '{{StableSwap}}',
     CollateralAdapter: '{{CollateralAdapter}}',
     blockNumber: '{{blockNumber}}',

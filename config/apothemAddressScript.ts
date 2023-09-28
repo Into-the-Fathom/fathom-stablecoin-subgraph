@@ -16,6 +16,7 @@ export let addresses: Addresses = {
   PriceOracle: '{{apothem.PriceOracle}}',
   PositionManager: '{{apothem.PositionManager}}',
   FixedSpreadLiquidationStrategy: '{{apothem.FixedSpreadLiquidationStrategy}}',
+  FixedSpreadLiquidationStrategyOld: '{{apothem.FixedSpreadLiquidationStrategyOld}}',
   StableSwap: '{{apothem.StableSwap}}',
   CollateralAdapter: '{{apothem.CollateralAdapter}}',
   blockNumber: networkAddresses['51'][process.argv[2]]["blockNumber"],
