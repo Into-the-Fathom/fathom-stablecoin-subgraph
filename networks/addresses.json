@@ -7,6 +7,7 @@
         "PriceOracle": "0xF557fBf34B785b157344167fE0D9bAb95da06843",
         "PositionManager": "0x2fE84707e907eaB4C4E6a91CCe458E648be390Ae",
         "FixedSpreadLiquidationStrategy": "0x465aeF54f7a8d9fE22B74A27fcd922c95cAaD4Be",
+        "FixedSpreadLiquidationStrategyOld": "0x66B45F20cE90D5164bf85C582002d3620C429496",
         "StableSwap": "0x42c06188B8C03769A1F73B3f31b259271ee3B981",
         "CollateralAdapter": "0x2fc7e65023aFF27FA61A573B5C8E3fDe3CE9ef79",
         "LiquidationEngine": "0x6Af7c469CD476aa7b5Cf5e486CfC8260814c244C"
@@ -22,6 +23,7 @@
         "PriceOracle": "0x9BDcECf207d1007a03fB3aE7EE4030b4BD3b9803",
         "PositionManager": "0x9661dCD4043eDb266a43e4Bd65DCae87dE051FD6",
         "FixedSpreadLiquidationStrategy": "0x4beb8638afe2892fa7d46303f60f22e106c9ab7b",
+        "FixedSpreadLiquidationStrategyOld": "0x4beb8638afe2892fa7d46303f60f22e106c9ab7b",
         "StableSwap": "0xf64E576CF91E5c2E61d72850f8D9CF5c6c37912a",
         "CollateralAdapter": "0x7793129dDB6de37249eF98168D989e5E2fBee76E",
         "LiquidationEngine": "0x679C494c1E4884A2caeaAE582BFbB97C69002682"
@@ -35,6 +37,7 @@
         "PriceOracle": "0x82e67c95c05De0106B564B048623A6f51d80B1F2",
         "PositionManager": "0x9688F11b055A03d2641FC65eCDcC0CdA1b358AB9",
         "FixedSpreadLiquidationStrategy": "0xcAa585e69c9A36F8f8e1A7AfB0d63D0F2E68d9FB",
+        "FixedSpreadLiquidationStrategyOld": "",
         "StableSwap": "0x4eE9dD547b4140D57524591934A77dF080De520e",
         "CollateralAdapter": "0x4f4e05C62f9D5d4bFA403Ef54b34B91037Ed26dd",
         "LiquidationEngine": "0x473A8c1dbeF8eBD6eBCb2B5b6604A20480e30Cc5"
@@ -48,6 +51,7 @@
         "PriceOracle": "0x1098408724e17F121aCd429cDf36334cd3263fB2",
         "PositionManager": "0x762348d386afa72c9C3E7D4CDc59659D2572b68c",
         "FixedSpreadLiquidationStrategy": "0xD071965D162e24d701e910E91fF3C415Ad576964",
+        "FixedSpreadLiquidationStrategyOld": "",
         "StableSwap": "0xF06199C84A83468ce2d9d1B4529eb6Fbd7D8d6B2",
         "CollateralAdapter": "0xf7BBB8EFb3C0122759f9066449fb395022543107",
         "LiquidationEngine": "0x18eb117d56932A4e624869E423B8E630744F9d93"
