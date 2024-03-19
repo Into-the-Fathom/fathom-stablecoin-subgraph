@@ -6,36 +6,32 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "test": "graph test",
-
     "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
     "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
     "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph subgraph.yaml",
-
+    "create:xinfin": "graph create --node https://graph.xinfin.network fathomProtocol/stablecoin-subgraph",
+    "remove:xinfin": "graph remove --node https://graph.xinfin.network fathomProtocol/stablecoin-subgraph",
+    "deploy:xinfin": "graph deploy --node https://graph.xinfin.network --version-label v0.0.1 fathomProtocol/stablecoin-subgraph subgraph.yaml",
     "create:k8s": "graph create --node http://graph-service:8020/ stablecoin-subgraph",
     "remove:k8s": "graph remove --node http://graph-service:8020/ stablecoin-subgraph",
     "deploy:k8s": "graph deploy --node http://graph-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph",
-
     "prep:addresses:apothem:dev": "ts-node config/apothemAddressScript.ts dev && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem:dev": "yarn clean && yarn prep:addresses:apothem:dev && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
-
     "prep:addresses:apothem:demo": "ts-node config/apothemAddressScript.ts demo && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem:demo": "yarn clean && yarn prep:addresses:apothem:demo && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
- 
     "prep:addresses:apothem:qa": "ts-node config/apothemAddressScript.ts qa && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem:qa": "yarn clean && yarn prep:addresses:apothem:qa && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
-
     "prep:addresses:xinfin:xinfin": "ts-node config/xinfinAddressScript.ts xinfin && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:xinfin:xinfin": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
-
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.67.2",
     "@graphprotocol/graph-ts": "0.32.0"
   },
   "devDependencies": {
-     "matchstick-as": "0.5.0",
-     "mustache": "^4.2.0",
-     "@types/node": "^14.0.13",
-     "typescript": "^3.9.3"
+    "matchstick-as": "0.5.0",
+    "mustache": "^4.2.0",
+    "@types/node": "^14.0.13",
+    "typescript": "^3.9.3"
   }
 }
