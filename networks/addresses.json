@@ -18,17 +18,17 @@
   "11155111": {
     "dev": {
       "addresses": {
-        "CollateralPoolConfig": "",
-        "BookKeeper": "",
-        "PriceOracle": "",
-        "PositionManager": "",
-        "FixedSpreadLiquidationStrategy": "",
-        "FixedSpreadLiquidationStrategyOld": "",
-        "StableSwap": "",
-        "CollateralAdapter": "",
-        "LiquidationEngine": ""
+        "CollateralPoolConfig": "0x879Ab034230cd1B758Ce56057D0056A44ccaa2f8",
+        "BookKeeper": "0x4710D2C8e370004a8C117c3cFF80b0E3Da93364e",
+        "PriceOracle": "0xa79b0079eD6441AfE04B66C68d8671Da767e30c1",
+        "PositionManager": "0xECE0884c5c4856d6A8a0e9a4E4EF73B1b732b441",
+        "FixedSpreadLiquidationStrategy": "0x0FA559a1b54F4029Aca15708C5f1AE0BAeFF4F9c",
+        "FixedSpreadLiquidationStrategyOld": "0x0FA559a1b54F4029Aca15708C5f1AE0BAeFF4F9c",
+        "StableSwap": "0x9894cCe0143A789F95F1DD34D16A058aF622ecFE",
+        "CollateralAdapter": "0xF7465fE9406aDd711a82b0550004e8F489b21e8a",
+        "LiquidationEngine": "0xb26C95CdC5145935c6Dc8a3ad980d04B49CF772D"
       },
-      "blockNumber": ""
+      "blockNumber": "5868218"
     },
     "network": "sepolia"
   },
