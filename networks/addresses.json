@@ -15,6 +15,23 @@
       "blockNumber": "59776353"
     }
   },
+  "11155111": {
+    "dev": {
+      "addresses": {
+        "CollateralPoolConfig": "0x879Ab034230cd1B758Ce56057D0056A44ccaa2f8",
+        "BookKeeper": "0x4710D2C8e370004a8C117c3cFF80b0E3Da93364e",
+        "PriceOracle": "0xa79b0079eD6441AfE04B66C68d8671Da767e30c1",
+        "PositionManager": "0xECE0884c5c4856d6A8a0e9a4E4EF73B1b732b441",
+        "FixedSpreadLiquidationStrategy": "0x0FA559a1b54F4029Aca15708C5f1AE0BAeFF4F9c",
+        "FixedSpreadLiquidationStrategyOld": "0x0FA559a1b54F4029Aca15708C5f1AE0BAeFF4F9c",
+        "StableSwap": "0x9894cCe0143A789F95F1DD34D16A058aF622ecFE",
+        "CollateralAdapter": "0xF7465fE9406aDd711a82b0550004e8F489b21e8a",
+        "LiquidationEngine": "0xb26C95CdC5145935c6Dc8a3ad980d04B49CF772D"
+      },
+      "blockNumber": "5868218"
+    },
+    "network": "sepolia"
+  },
   "51": {
     "dev": {
       "addresses": {
@@ -29,34 +46,6 @@
         "LiquidationEngine": "0x679C494c1E4884A2caeaAE582BFbB97C69002682"
       },
       "blockNumber": "52164638"
-    },
-    "demo": {
-      "addresses": {
-        "CollateralPoolConfig": "0xD4B51B718763026106cECc886744d429731AEdfa",
-        "BookKeeper": "0x8222b423be9c51C8396A939BBECB3A0430694174",
-        "PriceOracle": "0x82e67c95c05De0106B564B048623A6f51d80B1F2",
-        "PositionManager": "0x9688F11b055A03d2641FC65eCDcC0CdA1b358AB9",
-        "FixedSpreadLiquidationStrategy": "0xcAa585e69c9A36F8f8e1A7AfB0d63D0F2E68d9FB",
-        "FixedSpreadLiquidationStrategyOld": "",
-        "StableSwap": "0x4eE9dD547b4140D57524591934A77dF080De520e",
-        "CollateralAdapter": "0x4f4e05C62f9D5d4bFA403Ef54b34B91037Ed26dd",
-        "LiquidationEngine": "0x473A8c1dbeF8eBD6eBCb2B5b6604A20480e30Cc5"
-      },
-      "blockNumber": "47996460"
-    },
-    "qa": {
-      "addresses": {
-        "CollateralPoolConfig": "0xec6528a0C6D332cf11251F2721CB49CD3EB9ECc8",
-        "BookKeeper": "0xAB38b7D4DaB0c6C2e580690B448490efd93793C4",
-        "PriceOracle": "0x1098408724e17F121aCd429cDf36334cd3263fB2",
-        "PositionManager": "0x762348d386afa72c9C3E7D4CDc59659D2572b68c",
-        "FixedSpreadLiquidationStrategy": "0xD071965D162e24d701e910E91fF3C415Ad576964",
-        "FixedSpreadLiquidationStrategyOld": "",
-        "StableSwap": "0xF06199C84A83468ce2d9d1B4529eb6Fbd7D8d6B2",
-        "CollateralAdapter": "0xf7BBB8EFb3C0122759f9066449fb395022543107",
-        "LiquidationEngine": "0x18eb117d56932A4e624869E423B8E630744F9d93"
-      },
-      "blockNumber": "54295276"
     },
     "network": "apothem"
   }
