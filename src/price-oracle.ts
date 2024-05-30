@@ -8,7 +8,6 @@ import { Constants } from "./Utils/Constants";
 export function priceUpdateHandler(event: LogSetPrice): void {
     let poolId = event.params._poolId;
     let pool  = Pool.load(poolId.toHexString())
-    console.log('************ Pool ID: *************', poolId.toHexString())
     /*
     if(pool != null){
         //Price is not set yet...
