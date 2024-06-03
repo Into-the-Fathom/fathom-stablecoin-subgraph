@@ -6,6 +6,9 @@ import { Constants } from "./Utils/Constants"
 export function adjustPositionHandler(
     event: LogAdjustPosition
   ): void {
+
+    log.debug('<<<<-- [LogAdjustPosition Event received] -->>>>', [])
+
     let startTime = Date.now()
 
     let poolId = event.params._collateralPoolId
