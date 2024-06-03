@@ -82,6 +82,6 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         let endTime = Date.now()
         let duration = endTime - startTime
       
-        log.debug('LogSetPrice Event processed in {} ms', [duration.toString()])
+        log.error('LogSetPrice Event processed in {} ms', [duration.toString()])
     }
 }
