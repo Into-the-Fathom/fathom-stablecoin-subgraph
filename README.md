@@ -12,6 +12,7 @@ Install dependencies
 yarn
 ```
 
+
 ## Usage
 
 The commands to use will depend on which chain and graph node the subgraph is for. 
