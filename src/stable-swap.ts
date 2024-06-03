@@ -43,7 +43,7 @@ export function swapStablecoinToTokenHandler(
         let endTime = Date.now()
         let duration = endTime - startTime
       
-        log.info('LogSwapStablecoinToToken Event processed in {} ms', [duration.toString()])
+        log.debug('LogSwapStablecoinToToken Event processed in {} ms', [duration.toString()])
 
     }
 

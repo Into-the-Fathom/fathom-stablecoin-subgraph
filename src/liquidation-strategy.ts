@@ -56,7 +56,7 @@ export function positionLiquidationHandler(
         let endTime = Date.now()
         let duration = endTime - startTime
       
-        log.info('LogFixedSpreadLiquidate Event processed in {} ms', [duration.toString()])
+        log.debug('LogFixedSpreadLiquidate Event processed in {} ms', [duration.toString()])
     
     }
   }  

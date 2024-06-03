@@ -70,7 +70,7 @@ export function newPositionHandler(event: LogNewPosition): void {
     let endTime = Date.now()
     let duration = endTime - startTime
   
-    log.info('LogNewPosition Event processed in {} ms', [duration.toString()])
+    log.debug('LogNewPosition Event processed in {} ms', [duration.toString()])
 
 
 }
