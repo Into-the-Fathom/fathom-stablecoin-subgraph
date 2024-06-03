@@ -56,7 +56,7 @@ export function handleLogInitCollateralPoolId(
     let endTime = Date.now()
     let duration = endTime - startTime
   
-    log.debug('LogInitCollateralPoolId Event processed in {} ms', [duration.toString()])
+    log.error('LogInitCollateralPoolId Event processed in {} ms', [duration.toString()])
 
   }else{
     log.info('Pool with id {} Found',[poolId.toHexString()])
