@@ -17,7 +17,7 @@ import { Constants } from "./Utils/Constants";
 import { addresses } from "../config/addresses";
 
 export function newPositionHandler(event: LogNewPosition): void {
-    let startTime = new Date().getTime()
+    let startTime = Date.now()
 
     let positionManager = PositionManager.bind(Address.fromString(addresses.PositionManager))
     let positionAddress = positionManager.positions(event.params._positionId)
@@ -67,7 +67,7 @@ export function newPositionHandler(event: LogNewPosition): void {
         pool.save()
     }
 
-    let endTime = new Date().getTime()
+    let endTime = Date.now()
     let duration = endTime - startTime
   
     log.info('LogNewPosition Event processed in {} ms', [duration.toString()])

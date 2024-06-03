@@ -9,7 +9,7 @@ import { addresses } from "../config/addresses"
 export function handleLogInitCollateralPoolId(
   event: LogInitCollateralPoolId
 ): void {
-  let startTime = new Date().getTime()
+  let startTime = Date.now()
 
   //Save Pool
   let poolId = event.params._collateralPoolId
@@ -53,7 +53,7 @@ export function handleLogInitCollateralPoolId(
     protocolStat.pools = pools
     protocolStat.save()
 
-    let endTime = new Date().getTime()
+    let endTime = Date.now()
     let duration = endTime - startTime
   
     log.info('LogInitCollateralPoolId Event processed in {} ms', [duration.toString()])
