@@ -6,7 +6,8 @@ import { Constants } from "./Utils/Constants"
 export function adjustPositionHandler(
     event: LogAdjustPosition
   ): void {
-
+    let startTime = new Date().getTime()
+    
     let poolId = event.params._collateralPoolId
     let pool  = Pool.load(poolId.toHexString())
     if(pool != null){
@@ -74,6 +75,12 @@ export function adjustPositionHandler(
 
         position.save()
     } 
+
+    let endTime = new Date().getTime()
+    let duration = endTime - startTime
+  
+    log.info('LogAdjustPosition Event processed in {} ms', [duration.toString()])
+
   }
 
   export function setTotalDebtCeilingHanlder(
