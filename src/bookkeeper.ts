@@ -79,7 +79,7 @@ export function adjustPositionHandler(
     let endTime = Date.now()
     let duration = endTime - startTime
   
-    log.info('LogAdjustPosition Event processed in {} ms', [duration.toString()])
+    log.debug('LogAdjustPosition Event processed in {} ms', [duration.toString()])
 
   }
 
