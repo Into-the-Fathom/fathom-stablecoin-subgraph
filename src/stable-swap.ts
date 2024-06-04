@@ -17,7 +17,6 @@ export function remainingDailySwapLimitHandler(
 export function swapStablecoinToTokenHandler(
     event: LogSwapStablecoinToToken
     ): void {
-        let startTime = Date.now()
 
         let stableSwapStat = getOrCreateStableSwapStat()
         stableSwapStat.totalStablecoinToTokenSwapEvents = stableSwapStat.totalStablecoinToTokenSwapEvents.plus(BigInt.fromString('1'))
@@ -39,11 +38,6 @@ export function swapStablecoinToTokenHandler(
         stableSwapStat.stablecoinToTokenTotalSwapValue = stableSwapStat.stablecoinToTokenTotalSwapValue.plus(event.params._value);
         swapEvent.save()
         stableSwapStat.save()
-
-        let endTime = Date.now()
-        let duration = endTime - startTime
-      
-        log.error('LogSwapStablecoinToToken Event processed in {} ms', [duration.toString()])
 
     }
 

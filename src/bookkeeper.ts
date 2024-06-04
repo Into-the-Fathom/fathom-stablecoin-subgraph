@@ -7,10 +7,6 @@ export function adjustPositionHandler(
     event: LogAdjustPosition
   ): void {
 
-    log.error('<<<<-- [LogAdjustPosition Event received] -->>>>', [])
-
-    let startTime = Date.now()
-
     let poolId = event.params._collateralPoolId
     let pool  = Pool.load(poolId.toHexString())
     if(pool != null){
@@ -78,12 +74,6 @@ export function adjustPositionHandler(
 
         position.save()
     } 
-
-    let endTime = Date.now()
-    let duration = endTime - startTime
-  
-    log.error('LogAdjustPosition Event processed in {} ms', [duration.toString()])
-
   }
 
   export function setTotalDebtCeilingHanlder(
