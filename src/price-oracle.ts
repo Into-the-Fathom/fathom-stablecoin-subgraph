@@ -6,7 +6,6 @@ import { Pool, Position, ProtocolStat } from "../generated/schema";
 import { Constants } from "./Utils/Constants";
 
 export function priceUpdateHandler(event: LogSetPrice): void {
-    let startTime = Date.now()
 
     let poolId = event.params._poolId;
     let pool  = Pool.load(poolId.toHexString())
@@ -79,9 +78,5 @@ export function priceUpdateHandler(event: LogSetPrice): void {
             stats.save()
         }
         
-        let endTime = Date.now()
-        let duration = endTime - startTime
-      
-        log.error('LogSetPrice Event processed in {} ms', [duration.toString()])
     }
 }

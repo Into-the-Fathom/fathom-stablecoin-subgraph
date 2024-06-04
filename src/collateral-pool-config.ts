@@ -9,7 +9,6 @@ import { addresses } from "../config/addresses"
 export function handleLogInitCollateralPoolId(
   event: LogInitCollateralPoolId
 ): void {
-  let startTime = Date.now()
 
   //Save Pool
   let poolId = event.params._collateralPoolId
@@ -52,11 +51,6 @@ export function handleLogInitCollateralPoolId(
     pools.push(poolId.toHexString())
     protocolStat.pools = pools
     protocolStat.save()
-
-    let endTime = Date.now()
-    let duration = endTime - startTime
-  
-    log.error('LogInitCollateralPoolId Event processed in {} ms', [duration.toString()])
 
   }else{
     log.info('Pool with id {} Found',[poolId.toHexString()])

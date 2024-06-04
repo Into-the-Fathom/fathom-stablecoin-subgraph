@@ -6,7 +6,6 @@ import { Constants } from "./Utils/Constants"
 export function positionLiquidationHandler(
     event: LogFixedSpreadLiquidate
   ): void {
-    let startTime = Date.now()
 
     let position = Position.load(event.params._positionAddress.toHexString().toLowerCase())
     if(position!=null){
@@ -53,10 +52,5 @@ export function positionLiquidationHandler(
         position.liquidationCount  = position.liquidationCount.plus(BigInt.fromI32(1)) 
         position.save()
 
-        let endTime = Date.now()
-        let duration = endTime - startTime
-      
-        log.error('LogFixedSpreadLiquidate Event processed in {} ms', [duration.toString()])
-    
     }
   }  
