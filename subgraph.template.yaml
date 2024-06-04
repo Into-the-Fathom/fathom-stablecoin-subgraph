@@ -54,29 +54,29 @@ dataSources:
         - event: StablecoinIssuedAmount(uint256,indexed bytes32,uint256)
           handler: stablecoinIssuedAmountHandler
       file: ./src/bookkeeper.ts
-  # - kind: ethereum
-  #   name: PriceOracle
-  #   network: mainnet
-  #   source:
-  #     abi: PriceOracle
-  #     address: '{{PriceOracle}}'
-  #     startBlock: {{blockNumber}}
-  #   mapping:
-  #     kind: ethereum/events
-  #     apiVersion: 0.0.6
-  #     language: wasm/assemblyscript
-  #     entities:
-  #       - Pool
-  #       - ProtocolStat
-  #     abis:
-  #       - name: PriceOracle
-  #         file: ./abis/PriceOracle.json
-  #       - name: CollateralPoolConfig
-  #         file: ./abis/CollateralPoolConfig.json
-  #     eventHandlers:
-  #       - event: LogSetPrice(indexed bytes32,uint256,uint256)
-  #         handler: priceUpdateHandler
-  #     file: ./src/price-oracle.ts
+  - kind: ethereum
+    name: PriceOracle
+    network: mainnet
+    source:
+      abi: PriceOracle
+      address: '{{PriceOracle}}'
+      startBlock: {{blockNumber}}
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - Pool
+        - ProtocolStat
+      abis:
+        - name: PriceOracle
+          file: ./abis/PriceOracle.json
+        - name: CollateralPoolConfig
+          file: ./abis/CollateralPoolConfig.json
+      eventHandlers:
+        - event: LogSetPrice(indexed bytes32,uint256,uint256)
+          handler: priceUpdateHandler
+      file: ./src/price-oracle.ts
   - kind: ethereum
     name: PositionManager
     network: mainnet
