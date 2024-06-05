@@ -30,39 +30,75 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         let collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
         let _debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
 
-        // let _priceWithSafetyMargin = event.params._priceWithSafetyMargin
-        for (let i = 0; i < pool.positions.length; ++i) {
-            let pos  = Position.load(pool.positions[i])
-            //TODO: Check if below check can be simplified with closed position status
-            if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
-                            && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
-                let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
-                pos.debtValue = pos.debtShare.times(_debtAccumulatedRate)
-                pos.safetyBuffer = collateralValue.ge(pos.debtValue) ? collateralValue.minus(pos.debtValue) : BigDecimal.fromString('0')
+        let positions = pool.positions.load()
+        
+            for (let i = 0; i < positions.length; ++i) {
+                let pos  = positions[i]
+                //TODO: Check if below check can be simplified with closed position status
+                if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
+                                && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
+                    let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
+                    pos.debtValue = pos.debtShare.times(_debtAccumulatedRate)
+                    pos.safetyBuffer = collateralValue.ge(pos.debtValue) ? collateralValue.minus(pos.debtValue) : BigDecimal.fromString('0')
 
-                //Check if position is unsafe or not
-                if(pos.safetyBuffer.equals(BigDecimal.fromString('0'))){
-                    pos.positionStatus = 'unsafe'
-                }else{
-                    pos.positionStatus = 'safe'
+                    //Check if position is unsafe or not
+                    if(pos.safetyBuffer.equals(BigDecimal.fromString('0'))){
+                        pos.positionStatus = 'unsafe'
+                    }else{
+                        pos.positionStatus = 'safe'
+                    }
+
+                    if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
+                                pos.lockedCollateral.gt(BigDecimal.fromString('0'))){
+                                
+                        let collateralAvailableToWithdraw = (
+                                                    pool.priceWithSafetyMargin.times(
+                                                        pos.lockedCollateral).minus(pos.debtValue)
+                                                    )
+                                                    .div(pool.priceWithSafetyMargin)
+
+                            pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
+                    }
+
+                    pos.tvl = pos.lockedCollateral.times(pool.collateralPrice) 
+                    pos.save()
                 }
-
-                if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
-                            pos.lockedCollateral.gt(BigDecimal.fromString('0'))){
-                              
-                       let collateralAvailableToWithdraw = (
-                                                pool.priceWithSafetyMargin.times(
-                                                    pos.lockedCollateral).minus(pos.debtValue)
-                                                )
-                                                .div(pool.priceWithSafetyMargin)
-
-                        pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
-                }
-
-                pos.tvl = pos.lockedCollateral.times(pool.collateralPrice) 
-                pos.save()
-            }
         }
+
+
+
+        // for (let i = 0; i < pool.positions.; ++i) {
+        //     let pos  = Position.load(pool.positions[i])
+        //     //TODO: Check if below check can be simplified with closed position status
+        //     if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
+        //                     && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
+        //         let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
+        //         pos.debtValue = pos.debtShare.times(_debtAccumulatedRate)
+        //         pos.safetyBuffer = collateralValue.ge(pos.debtValue) ? collateralValue.minus(pos.debtValue) : BigDecimal.fromString('0')
+
+        //         //Check if position is unsafe or not
+        //         if(pos.safetyBuffer.equals(BigDecimal.fromString('0'))){
+        //             pos.positionStatus = 'unsafe'
+        //         }else{
+        //             pos.positionStatus = 'safe'
+        //         }
+
+        //         if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
+        //                     pos.lockedCollateral.gt(BigDecimal.fromString('0'))){
+                              
+        //                let collateralAvailableToWithdraw = (
+        //                                         pool.priceWithSafetyMargin.times(
+        //                                             pos.lockedCollateral).minus(pos.debtValue)
+        //                                         )
+        //                                         .div(pool.priceWithSafetyMargin)
+
+        //                 pos.safetyBufferInPercent = collateralAvailableToWithdraw.div(pos.lockedCollateral)
+        //         }
+
+        //         pos.tvl = pos.lockedCollateral.times(pool.collateralPrice) 
+        //         pos.save()
+        //     }
+        // }
 
         // Update the total TVL in protcol by adding the TVLs from all pools
         let stats  = ProtocolStat.load(Constants.FATHOM_STATS_KEY)

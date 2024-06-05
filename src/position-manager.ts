@@ -40,6 +40,7 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.blockNumber = event.block.number
     position.blockTimestamp = event.block.timestamp
     position.transaction = event.transaction.hash
+    position.pool = poolId.toHexString()
 
     position.save()
 
@@ -58,12 +59,12 @@ export function newPositionHandler(event: LogNewPosition): void {
     user.save()
 
     //Save newly opened position in pool
-    let pool  = Pool.load(poolId.toHexString())
-    if(pool != null){
-        let _positions = pool.positions
-        _positions.push(positionAddress.toHexString())
-        pool.positions = _positions
-        pool.save()
-    }
+    // let pool  = Pool.load(poolId.toHexString())
+    // if(pool != null){
+    //     let _positions = pool.positions
+    //     _positions.push(positionAddress.toHexString())
+    //     pool.positions = _positions
+    //     pool.save()
+    // }
 
 }
