@@ -7,17 +7,17 @@
     "build": "graph build",
     "test": "graph test",
 
-    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph-test subgraph.yaml",
-    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph-test subgraph.yaml",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph-test subgraph.yaml",
+    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
+    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph subgraph.yaml",
 
-    "create:k8s": "graph create --node http://graph-service:8020/ stablecoin-subgraph-test",
-    "remove:k8s": "graph remove --node http://graph-service:8020/ stablecoin-subgraph-test",
-    "deploy:k8s": "graph deploy --node http://graph-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph-test",
+    "create:k8s": "graph create --node http://graph-service:8020/ stablecoin-subgraph",
+    "remove:k8s": "graph remove --node http://graph-service:8020/ stablecoin-subgraph",
+    "deploy:k8s": "graph deploy --node http://graph-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph",
 
-    "create:k8s:sepolia": "graph create --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph-test",
-    "remove:k8s:sepolia": "graph remove --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph-test",
-    "deploy:k8s:sepolia": "graph deploy --node http://sepolia-graph-node-service.graph-node:8020/ --ipfs http://ipfs-service.graph-node:5001 --version-label v0.0.1 stablecoin-subgraph-test",
+    "create:k8s:sepolia": "graph create --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph",
+    "remove:k8s:sepolia": "graph remove --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph",
+    "deploy:k8s:sepolia": "graph deploy --node http://sepolia-graph-node-service.graph-node:8020/ --ipfs http://ipfs-service.graph-node:5001 --version-label v0.0.1 stablecoin-subgraph",
 
     "prep:addresses:apothem:dev": "ts-node config/apothemAddressScript.ts dev && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem:dev": "yarn clean && yarn prep:addresses:apothem:dev && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
@@ -30,11 +30,11 @@
 
   },
   "dependencies": {
-    "@graphprotocol/graph-cli": "^0.67.2",
-    "@graphprotocol/graph-ts": "^0.32.0"
+    "@graphprotocol/graph-cli": "0.67.2",
+    "@graphprotocol/graph-ts": "0.32.0"
   },
   "devDependencies": {
-     "matchstick-as": "^0.6.0",
+     "matchstick-as": "0.5.0",
      "mustache": "^4.2.0",
      "@types/node": "^14.0.13",
      "typescript": "^3.9.3"

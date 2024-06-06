@@ -26,7 +26,7 @@ type Pool @entity {
   totalBorrowed: BigInt!
   totalAvailable: BigInt!
   tvl: BigDecimal!
-  positions: [Position!]! @derivedFrom(field: "pool")
+  positions: [String!]!
 }
 
 type ProtocolStat @entity {
@@ -55,7 +55,6 @@ type Position @entity {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transaction: Bytes!
-  pool: Pool!
 }
 
 type SwapEvent @entity {
