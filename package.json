@@ -7,9 +7,9 @@
     "build": "graph build",
     "test": "graph test",
 
-    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
-    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph subgraph.yaml",
+    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph",
+    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph",
 
     "create:k8s:apothem": "graph create --node http://apothem-graph-node-service:8020/ stablecoin-subgraph",
     "remove:k8s:apothem": "graph remove --node http://apothem-graph-node-service:8020/ stablecoin-subgraph",
