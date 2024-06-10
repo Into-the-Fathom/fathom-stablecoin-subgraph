@@ -4,7 +4,6 @@ enum PositionStatus {
   closed
 }
 
-
 type User @entity {
   id: String!
   address: Bytes!
@@ -27,7 +26,7 @@ type Pool @entity {
   totalBorrowed: BigInt!
   totalAvailable: BigInt!
   tvl: BigDecimal!
-  positions: [String!]!
+  positions: [Position!]! @derivedFrom(field: "pool")
 }
 
 type ProtocolStat @entity {
@@ -56,6 +55,7 @@ type Position @entity {
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transaction: Bytes!
+  pool: Pool!
 }
 
 type SwapEvent @entity {
