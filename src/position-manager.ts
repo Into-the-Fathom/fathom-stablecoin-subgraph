@@ -3,9 +3,7 @@ import {
   PositionManager,
 
 } from "../generated/PositionManager/PositionManager"
-import {CollateralPoolConfig} from "../generated/CollateralPoolConfig/CollateralPoolConfig"
-import { Position, Pool, User} from "../generated/schema"
-import { log } from '@graphprotocol/graph-ts'
+import { Position, User} from "../generated/schema"
 
 
 import {
@@ -13,7 +11,6 @@ import {
   BigDecimal,
   BigInt
 } from "@graphprotocol/graph-ts";
-import { Constants } from "./Utils/Constants";
 import { addresses } from "../config/addresses";
 
 export function newPositionHandler(event: LogNewPosition): void {
@@ -56,14 +53,4 @@ export function newPositionHandler(event: LogNewPosition): void {
     }
     // save 
     user.save()
-
-    //Save newly opened position in pool
-    let pool  = Pool.load(poolId.toHexString())
-    if(pool != null){
-        let _positions = pool.positions
-        _positions.push(positionAddress.toHexString())
-        pool.positions = _positions
-        pool.save()
-    }
-
 }
