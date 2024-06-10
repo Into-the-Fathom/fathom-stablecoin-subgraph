@@ -4,6 +4,7 @@ enum PositionStatus {
   closed
 }
 
+
 type User @entity {
   id: String!
   address: Bytes!
