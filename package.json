@@ -7,13 +7,13 @@
     "build": "graph build",
     "test": "graph test",
 
-    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
-    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph subgraph.yaml",
-    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph subgraph.yaml",
+    "create:local": "graph create --node http://localhost:8020/ stablecoin-subgraph-v1 subgraph.yaml",
+    "remove:local": "graph remove --node http://localhost:8020/ stablecoin-subgraph-v1 subgraph.yaml",
+    "deploy:local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001  stablecoin-subgraph-v1 subgraph.yaml",
 
-    "create:k8s": "graph create --node http://apothem-graph-node-service:8020/ stablecoin-subgraph",
-    "remove:k8s": "graph remove --node http://apothem-graph-node-service:8020/ stablecoin-subgraph",
-    "deploy:k8s": "graph deploy --node http://apothem-graph-node-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph",
+    "create:k8s": "graph create --node http://apothem-graph-node-service:8020/ stablecoin-subgraph-v1",
+    "remove:k8s": "graph remove --node http://apothem-graph-node-service:8020/ stablecoin-subgraph-v1",
+    "deploy:k8s": "graph deploy --node http://apothem-graph-node-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph-v1",
 
     "create:k8s:sepolia": "graph create --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph",
     "remove:k8s:sepolia": "graph remove --node http://sepolia-graph-node-service.graph-node:8020/ stablecoin-subgraph",
