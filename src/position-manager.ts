@@ -37,7 +37,6 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.blockNumber = event.block.number
     position.blockTimestamp = event.block.timestamp
     position.transaction = event.transaction.hash
-    position.pool = poolId.toHexString()
 
     position.save()
 
