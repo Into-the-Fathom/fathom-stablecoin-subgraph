@@ -1,8 +1,8 @@
-import { Address, BigDecimal, BigInt, ByteArray, log } from "@graphprotocol/graph-ts";
+import { Address, BigDecimal } from "@graphprotocol/graph-ts";
 import { addresses } from "../config/addresses";
 import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
-import { Pool, Position, ProtocolStat } from "../generated/schema";
+import { Pool, ProtocolStat } from "../generated/schema";
 import { Constants } from "./Utils/Constants";
 
 export function priceUpdateHandler(event: LogSetPrice): void {

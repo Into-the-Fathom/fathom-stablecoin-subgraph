@@ -1,4 +1,4 @@
-import { Address, BigDecimal, BigInt, Bytes, log } from "@graphprotocol/graph-ts"
+import { Address, BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {Pool, ProtocolStat } from "../generated/schema"
 import {
   CollateralPoolConfig, LogInitCollateralPoolId, LogSetDebtCeiling, LogSetLiquidationRatio, LogSetDebtAccumulatedRate
