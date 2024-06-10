@@ -29,7 +29,7 @@ export function handleLogInitCollateralPoolId(
     pool.totalBorrowed = BigInt.fromI32(0)
     pool.tvl = BigDecimal.fromString('0')
     pool.totalAvailable = Constants.divByRAD(event.params._debtCeiling) 
-    pool.positions = []
+    // pool.positions = []
 
     let collateralConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
     pool.debtAccumulatedRate = Constants.divByRAYToDecimal(collateralConfig.getDebtAccumulatedRate(poolId))
