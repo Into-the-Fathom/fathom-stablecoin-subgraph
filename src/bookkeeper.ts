@@ -1,7 +1,7 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogAdjustPosition, LogSetTotalDebtCeiling, StablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
 import {Pool, ProtocolStat, Position, User, PositionActivity } from "../generated/schema"
-import { Constants } from "./utils/constants"
+import { Constants } from "./utils/helper"
 
 export function adjustPositionHandler(
     event: LogAdjustPosition

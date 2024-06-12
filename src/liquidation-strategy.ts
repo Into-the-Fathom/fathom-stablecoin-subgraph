@@ -1,7 +1,7 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogFixedSpreadLiquidate} from '../generated/FixedSpreadLiquidationStrategy/FixedSpreadLiquidationStrategy'
 import { Position, PositionActivity, User } from '../generated/schema'
-import { Constants } from "./utils/constants"
+import { Constants } from "./utils/helper"
 
 export function positionLiquidationHandler(
     event: LogFixedSpreadLiquidate

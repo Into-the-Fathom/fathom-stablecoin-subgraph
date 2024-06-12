@@ -13,7 +13,7 @@ import {
   Bytes
 } from "@graphprotocol/graph-ts";
 import { addresses } from "../config/addresses";
-import { Constants } from "./utils/constants";
+import { Constants } from "./utils/helper";
 
 export function newPositionHandler(event: LogNewPosition): void {
 
