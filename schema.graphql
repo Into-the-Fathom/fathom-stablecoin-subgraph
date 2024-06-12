@@ -7,7 +7,7 @@ enum PositionStatus {
 enum PositionActivityState {
   created
   topup
-  withdrawal
+  repay
   liquidation
   closed
 }
