@@ -3,7 +3,7 @@ import {Pool, ProtocolStat } from "../generated/schema"
 import {
   CollateralPoolConfig, LogInitCollateralPoolId, LogSetDebtCeiling, LogSetLiquidationRatio, LogSetDebtAccumulatedRate
 } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
-import { Constants } from "./Utils/Constants"
+import { Constants } from "./utils/constants"
 import { addresses } from "../config/addresses"
 
 export function handleLogInitCollateralPoolId(

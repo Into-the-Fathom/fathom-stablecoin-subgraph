@@ -3,7 +3,7 @@ import { addresses } from "../config/addresses";
 import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
 import { Pool, ProtocolStat } from "../generated/schema";
-import { Constants } from "./Utils/Constants";
+import { Constants } from "./utils/constants";
 
 export function priceUpdateHandler(event: LogSetPrice): void {
 

@@ -4,6 +4,14 @@ enum PositionStatus {
   closed
 }
 
+enum PositionActivityState {
+  created
+  topup
+  withdrawal
+  liquidation
+  closed
+}
+
 type User @entity {
   id: String!
   address: Bytes!
@@ -56,6 +64,18 @@ type Position @entity {
   blockTimestamp: BigInt!
   transaction: Bytes!
   pool: Pool!
+  activity: [PositionActivity!]! @derivedFrom(field: "position")
+}
+
+type PositionActivity @entity {
+    id: String!
+    position: Position!
+    activityState: PositionActivityState!
+    collateralAmount: BigDecimal!
+    debtAmount: BigDecimal!
+    blockNumber: BigInt!
+    blockTimestamp: BigInt!
+    transaction: Bytes!
 }
 
 type SwapEvent @entity {

@@ -2,6 +2,7 @@ import { BigDecimal, BigInt } from "@graphprotocol/graph-ts"
 
 export class Constants{
     public static FATHOM_STATS_KEY:string = 'fathom_stats'
+    public static POSITION_ACTIVITY_PREFIX_KEY:string = 'position-activity'
     public static DEFAULT_PRICE:BigDecimal = BigDecimal.fromString('0')
 
     public static WAD:BigInt = BigInt.fromI64(10**18)

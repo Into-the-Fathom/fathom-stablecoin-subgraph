@@ -3,15 +3,17 @@ import {
   PositionManager,
 
 } from "../generated/PositionManager/PositionManager"
-import { Position, User} from "../generated/schema"
+import { Position, PositionActivity, User} from "../generated/schema"
 
 
 import {
   Address,
   BigDecimal,
-  BigInt
+  BigInt,
+  Bytes
 } from "@graphprotocol/graph-ts";
 import { addresses } from "../config/addresses";
+import { Constants } from "./utils/constants";
 
 export function newPositionHandler(event: LogNewPosition): void {
 
@@ -40,6 +42,9 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.pool = poolId.toHexString()
     position.save()
 
+    // create position activity
+    createPositionAcitity(positionAddress.toHexString(), event)
+
     //     load user account 
     let user = User.load(event.params._usr.toHexString())
 
@@ -54,3 +59,20 @@ export function newPositionHandler(event: LogNewPosition): void {
     // save 
     user.save()
 }
+
+function createPositionAcitity(positionAddress: string, event: LogNewPosition): void {
+  const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
+  let positionActivity = PositionActivity.load(positionActivityKey)
+  if (positionActivity === null) {
+      positionActivity = new PositionActivity(positionActivityKey)
+      positionActivity.activityState = 'created'
+      positionActivity.collateralAmount = BigDecimal.fromString('0')
+      positionActivity.debtAmount = BigDecimal.fromString('0')
+      positionActivity.position = positionAddress
+      positionActivity.blockNumber = event.block.number
+      positionActivity.blockTimestamp = event.block.timestamp
+      positionActivity.transaction = event.transaction.hash
+      positionActivity.save()
+  }
+}
+
