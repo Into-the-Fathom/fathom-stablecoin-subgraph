@@ -1,7 +1,7 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogAdjustPosition, LogSetTotalDebtCeiling, StablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
-import {Pool, ProtocolStat, Position, User } from "../generated/schema"
-import { Constants } from "./Utils/Constants"
+import {Pool, ProtocolStat, Position, User, PositionActivity } from "../generated/schema"
+import { Constants } from "./utils/helper"
 
 export function adjustPositionHandler(
     event: LogAdjustPosition
@@ -73,7 +73,44 @@ export function adjustPositionHandler(
         }
 
         position.save()
+
+        //Create position activity
+        createPositionAcitity(event.params._positionAddress.toHexString(), event)
     } 
+  }
+
+  function createPositionAcitity(positionAddress: string, event: LogAdjustPosition): void {
+    
+    const positionDebtShare = Constants.divByWADToDecimal(event.params._addDebtShare)
+    const debtShareAdded = Constants.divByWADToDecimal(event.params._addDebtShare)
+    const collateralAdded = Constants.divByWADToDecimal(event.params._addCollateral)
+
+    //derive the activity state
+    let activityState = 'topup'
+    
+    if(positionDebtShare.equals(BigDecimal.fromString('0'))){
+      //if debtShare is zero, it means position is closed
+      activityState = 'closed'
+    }else if(debtShareAdded.lt(BigDecimal.fromString('0'))){ 
+      //if debtShare is negative, it means debt is repaid
+      activityState = 'repay'
+    }
+    
+    
+    
+    const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
+    let positionActivity = PositionActivity.load(positionActivityKey)
+    if (positionActivity === null) {
+        positionActivity = new PositionActivity(positionActivityKey)
+        positionActivity.activityState = activityState
+        positionActivity.collateralAmount = collateralAdded
+        positionActivity.debtAmount = debtShareAdded
+        positionActivity.position = positionAddress
+        positionActivity.blockNumber = event.block.number
+        positionActivity.blockTimestamp = event.block.timestamp
+        positionActivity.transaction = event.transaction.hash
+        positionActivity.save()
+    }
   }
 
   export function setTotalDebtCeilingHanlder(

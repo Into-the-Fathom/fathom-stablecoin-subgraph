@@ -1,7 +1,7 @@
 import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogFixedSpreadLiquidate} from '../generated/FixedSpreadLiquidationStrategy/FixedSpreadLiquidationStrategy'
-import { Position, User } from '../generated/schema'
-import { Constants } from "./Utils/Constants"
+import { Position, PositionActivity, User } from '../generated/schema'
+import { Constants } from "./utils/helper"
 
 export function positionLiquidationHandler(
     event: LogFixedSpreadLiquidate
@@ -52,5 +52,25 @@ export function positionLiquidationHandler(
         position.liquidationCount  = position.liquidationCount.plus(BigInt.fromI32(1)) 
         position.save()
 
+        //Create position activity
+        createPositionAcitity(event.params._positionAddress.toHexString(), event)
+
     }
-  }  
+  }
+  
+  function createPositionAcitity(positionAddress: string, event: LogFixedSpreadLiquidate): void {
+    const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
+    let positionActivity = PositionActivity.load(positionActivityKey)
+    if (positionActivity === null) {
+        positionActivity = new PositionActivity(positionActivityKey)
+        positionActivity.activityState = 'liquidation'
+        positionActivity.collateralAmount = event.params._collateralAmountToBeLiquidated.toBigDecimal()
+        positionActivity.debtAmount = event.params._actualDebtShareToBeLiquidated.toBigDecimal()
+        positionActivity.position = positionAddress
+        positionActivity.blockNumber = event.block.number
+        positionActivity.blockTimestamp = event.block.timestamp
+        positionActivity.transaction = event.transaction.hash
+        positionActivity.save()
+    }
+  }
+  
