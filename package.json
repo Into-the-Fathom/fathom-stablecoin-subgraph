@@ -15,6 +15,10 @@
     "remove:k8s": "graph remove --node http://graph-service:8020/ stablecoin-subgraph",
     "deploy:k8s": "graph deploy --node http://graph-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph subgraph.yaml",
 
+    "create:k8s:xinfin": "graph create --node http://xinfin-graph-node-service:8020/ stablecoin-subgraph",
+    "remove:k8s:xinfin": "graph remove --node http://xinfin-graph-node-service:8020/ stablecoin-subgraph",
+    "deploy:k8s:xinfin": "graph deploy --node http://xinfin-graph-node-service:8020/ --ipfs http://ipfs-service:5001 --version-label v0.0.1 stablecoin-subgraph",
+
     "prep:addresses:apothem:dev": "ts-node config/apothemAddressScript.ts dev && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
     "prep:apothem:dev": "yarn clean && yarn prep:addresses:apothem:dev && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
 
@@ -25,7 +29,7 @@
     "prep:apothem:qa": "yarn clean && yarn prep:addresses:apothem:qa && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build",
 
     "prep:addresses:xinfin:xinfin": "ts-node config/xinfinAddressScript.ts xinfin && mustache ./config/generatedAddresses.json ./config/addresses.template.ts > ./config/addresses.ts",
-    "prep:xinfin:xinfin": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
+    "prep:xinfin:prod": "yarn clean && yarn prep:addresses:xinfin:xinfin && mustache ./config/generatedAddresses.json subgraph.template.yaml > subgraph.yaml && graph codegen && graph build"
 
   },
   "dependencies": {
