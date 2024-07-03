@@ -99,6 +99,8 @@ dataSources:
           file: ./abis/PositionManager.json
         - name: CollateralPoolConfig
           file: ./abis/CollateralPoolConfig.json
+        - name: BookKeeper
+          file: ./abis/BookKeeper.json
       eventHandlers:
         - event: LogNewPosition(indexed address,indexed address,indexed uint256)
           handler: newPositionHandler
