@@ -61,10 +61,10 @@ export function newPositionHandler(event: LogNewPosition): void {
     user.save()
 }
 
-function createPositionAcitity(positionAddress: Address, event: LogNewPosition, poolId: string): void {
+function createPositionAcitity(positionAddress: Address, event: LogNewPosition, poolId: Bytes): void {
   const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
   let bookeKeeper = BookKeeper.bind(Address.fromString(addresses.BookKeeper))
-  let positionResult = bookeKeeper.positions(Bytes.fromHexString(poolId),positionAddress)
+  let positionResult = bookeKeeper.positions(poolId,positionAddress)
   
   let positionActivity = PositionActivity.load(positionActivityKey)
   if (positionActivity === null) {
