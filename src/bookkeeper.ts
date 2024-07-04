@@ -1,7 +1,10 @@
-import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
+import { Address, BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogAdjustPosition, LogSetTotalDebtCeiling, StablecoinIssuedAmount} from "../generated/BookKeeper/BookKeeper"
 import {Pool, ProtocolStat, Position, User, PositionActivity } from "../generated/schema"
 import { Constants } from "./utils/helper"
+import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
+import { addresses } from "../config/addresses";
+
 
 export function adjustPositionHandler(
     event: LogAdjustPosition
@@ -81,9 +84,17 @@ export function adjustPositionHandler(
 
   function createPositionAcitity(positionAddress: string, event: LogAdjustPosition): void {
     
-    const positionDebtShare = Constants.divByWADToDecimal(event.params._addDebtShare)
+    const positionDebtShare = Constants.divByWADToDecimal(event.params._debtShare)
     const debtShareAdded = Constants.divByWADToDecimal(event.params._addDebtShare)
     const collateralAdded = Constants.divByWADToDecimal(event.params._addCollateral)
+
+    let debtAccumulatedRate = BigDecimal.fromString('1');
+
+    //Calculated the debtAccumulatedRate if debtShare is not 0
+    if(! positionDebtShare.equals(BigDecimal.fromString('0'))){
+        let collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
+        debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(event.params._collateralPoolId).value)
+    }
 
     //derive the activity state
     let activityState = 'topup'
@@ -96,15 +107,13 @@ export function adjustPositionHandler(
       activityState = 'repay'
     }
     
-    
-    
     const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
     let positionActivity = PositionActivity.load(positionActivityKey)
     if (positionActivity === null) {
         positionActivity = new PositionActivity(positionActivityKey)
         positionActivity.activityState = activityState
         positionActivity.collateralAmount = collateralAdded
-        positionActivity.debtAmount = debtShareAdded
+        positionActivity.debtAmount = debtShareAdded.times(debtAccumulatedRate)
         positionActivity.position = positionAddress
         positionActivity.blockNumber = event.block.number
         positionActivity.blockTimestamp = event.block.timestamp
