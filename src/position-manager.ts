@@ -70,8 +70,8 @@ function createPositionAcitity(positionAddress: Address, event: LogNewPosition, 
   if (positionActivity === null) {
       positionActivity = new PositionActivity(positionActivityKey)
       positionActivity.activityState = 'created'
-      positionActivity.collateralAmount = positionResult.getLockedCollateral().toBigDecimal()
-      positionActivity.debtAmount = positionResult.getDebtShare().toBigDecimal()
+      positionActivity.collateralAmount = Constants.divByWADToDecimal(positionResult.getLockedCollateral())
+      positionActivity.debtAmount = Constants.divByWADToDecimal(positionResult.getDebtShare())
       positionActivity.position = positionAddress.toHexString()
       positionActivity.blockNumber = event.block.number
       positionActivity.blockTimestamp = event.block.timestamp
