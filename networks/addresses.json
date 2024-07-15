@@ -6,7 +6,7 @@
         "BookKeeper": "0x6FD3f049DF9e1886e1DFc1A034D379efaB0603CE",
         "PriceOracle": "0xF557fBf34B785b157344167fE0D9bAb95da06843",
         "PositionManager": "0x2fE84707e907eaB4C4E6a91CCe458E648be390Ae",
-        "FixedSpreadLiquidationStrategy": "0x465aeF54f7a8d9fE22B74A27fcd922c95cAaD4Be",
+        "FixedSpreadLiquidationStrategy": "0xfe5037504E0EF5eC2DfBEEA03f9d9cB43580EF23",
         "FixedSpreadLiquidationStrategyOld": "0x66B45F20cE90D5164bf85C582002d3620C429496",
         "StableSwap": "0x42c06188B8C03769A1F73B3f31b259271ee3B981",
         "CollateralAdapter": "0x2fc7e65023aFF27FA61A573B5C8E3fDe3CE9ef79",
