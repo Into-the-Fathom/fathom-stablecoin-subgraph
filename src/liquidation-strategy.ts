@@ -1,7 +1,10 @@
-import { BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
+import { Address, BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {LogFixedSpreadLiquidate} from '../generated/FixedSpreadLiquidationStrategy/FixedSpreadLiquidationStrategy'
 import { Position, PositionActivity, User } from '../generated/schema'
 import { Constants } from "./utils/helper"
+import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
+import { addresses } from "../config/addresses"
+
 
 export function positionLiquidationHandler(
     event: LogFixedSpreadLiquidate
@@ -61,11 +64,23 @@ export function positionLiquidationHandler(
   function createPositionAcitity(positionAddress: string, event: LogFixedSpreadLiquidate): void {
     const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
     let positionActivity = PositionActivity.load(positionActivityKey)
+    
+
+    const debtShare = Constants.divByWADToDecimal(event.params._actualDebtShareToBeLiquidated)
+
+    let debtAccumulatedRate = BigDecimal.fromString('1');
+  
+    //Calculated the debtAccumulatedRate if debtShare is not 0
+    if(! debtShare.equals(BigDecimal.fromString('0'))){
+        const collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
+        debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(event.params._collateralPoolId).value)
+    }
+    
     if (positionActivity === null) {
         positionActivity = new PositionActivity(positionActivityKey)
         positionActivity.activityState = 'liquidation'
-        positionActivity.collateralAmount = event.params._collateralAmountToBeLiquidated.toBigDecimal()
-        positionActivity.debtAmount = event.params._actualDebtShareToBeLiquidated.toBigDecimal()
+        positionActivity.collateralAmount = Constants.divByWADToDecimal(event.params._collateralAmountToBeLiquidated)
+        positionActivity.debtAmount = debtShare.times(debtAccumulatedRate)
         positionActivity.position = positionAddress
         positionActivity.blockNumber = event.block.number
         positionActivity.blockTimestamp = event.block.timestamp
