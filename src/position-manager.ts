@@ -4,6 +4,7 @@ import {
 
 } from "../generated/PositionManager/PositionManager"
 import { Position, PositionActivity, User} from "../generated/schema"
+import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
 
 
 import {
@@ -63,15 +64,25 @@ export function newPositionHandler(event: LogNewPosition): void {
 
 function createPositionAcitity(positionAddress: Address, event: LogNewPosition, poolId: Bytes): void {
   const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
-  let bookeKeeper = BookKeeper.bind(Address.fromString(addresses.BookKeeper))
-  let positionResult = bookeKeeper.positions(poolId,positionAddress)
+  const bookeKeeper = BookKeeper.bind(Address.fromString(addresses.BookKeeper))
+  const positionResult = bookeKeeper.positions(poolId,positionAddress)
+  const debtShare = Constants.divByWADToDecimal(positionResult.getDebtShare())
+
+  let debtAccumulatedRate = BigDecimal.fromString('1');
+
+  //Calculated the debtAccumulatedRate if debtShare is not 0
+  if(! debtShare.equals(BigDecimal.fromString('0'))){
+      const collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
+      debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
+  }
+
   
   let positionActivity = PositionActivity.load(positionActivityKey)
   if (positionActivity === null) {
       positionActivity = new PositionActivity(positionActivityKey)
       positionActivity.activityState = 'created'
       positionActivity.collateralAmount = Constants.divByWADToDecimal(positionResult.getLockedCollateral())
-      positionActivity.debtAmount = Constants.divByWADToDecimal(positionResult.getDebtShare())
+      positionActivity.debtAmount = debtShare.times(debtAccumulatedRate)
       positionActivity.position = positionAddress.toHexString()
       positionActivity.blockNumber = event.block.number
       positionActivity.blockTimestamp = event.block.timestamp
