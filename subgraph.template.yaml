@@ -43,9 +43,13 @@ dataSources:
       entities:
         - Pool
         - ProtocolStat
+        - Position
+        - PositionActivity
       abis:
         - name: BookKeeper
           file: ./abis/BookKeeper.json
+        - name: CollateralPoolConfig
+          file: ./abis/CollateralPoolConfig.json
       eventHandlers:
         - event: LogAdjustPosition(indexed address,indexed bytes32,indexed address,uint256,uint256,uint256,int256,int256)
           handler: adjustPositionHandler
@@ -60,7 +64,7 @@ dataSources:
     source:
       abi: PriceOracle
       address: '{{PriceOracle}}'
-      startBlock: {{blockNumber}} 
+      startBlock: {{blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -83,7 +87,7 @@ dataSources:
     source:
       abi: PositionManager
       address: '{{PositionManager}}'
-      startBlock: {{blockNumber}} 
+      startBlock: {{blockNumber}}
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -91,11 +95,14 @@ dataSources:
       entities:
         - Position
         - Pool
+        - PositionActivity
       abis:
         - name: PositionManager
           file: ./abis/PositionManager.json
         - name: CollateralPoolConfig
           file: ./abis/CollateralPoolConfig.json
+        - name: BookKeeper
+          file: ./abis/BookKeeper.json
       eventHandlers:
         - event: LogNewPosition(indexed address,indexed address,indexed uint256)
           handler: newPositionHandler
@@ -113,6 +120,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Position
+        - PositionActivity
       abis:
         - name: FixedSpreadLiquidationStrategy
           file: ./abis/FixedSpreadLiquidationStrategy.json
@@ -137,6 +145,7 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Position
+        - PositionActivity
       abis:
         - name: FixedSpreadLiquidationStrategyOld
           file: ./abis/FixedSpreadLiquidationStrategyOld.json

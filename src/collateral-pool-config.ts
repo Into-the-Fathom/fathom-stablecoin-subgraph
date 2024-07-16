@@ -1,14 +1,15 @@
-import { Address, BigDecimal, BigInt, Bytes, log } from "@graphprotocol/graph-ts"
+import { Address, BigDecimal, BigInt, log } from "@graphprotocol/graph-ts"
 import {Pool, ProtocolStat } from "../generated/schema"
 import {
   CollateralPoolConfig, LogInitCollateralPoolId, LogSetDebtCeiling, LogSetLiquidationRatio, LogSetDebtAccumulatedRate
 } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
-import { Constants } from "./Utils/Constants"
+import { Constants } from "./utils/helper"
 import { addresses } from "../config/addresses"
 
 export function handleLogInitCollateralPoolId(
   event: LogInitCollateralPoolId
 ): void {
+
   //Save Pool
   let poolId = event.params._collateralPoolId
   let pool  = Pool.load(poolId.toHexString())
@@ -28,7 +29,7 @@ export function handleLogInitCollateralPoolId(
     pool.totalBorrowed = BigInt.fromI32(0)
     pool.tvl = BigDecimal.fromString('0')
     pool.totalAvailable = Constants.divByRAD(event.params._debtCeiling) 
-    pool.positions = []
+    // pool.positions = []
 
     let collateralConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
     pool.debtAccumulatedRate = Constants.divByRAYToDecimal(collateralConfig.getDebtAccumulatedRate(poolId))

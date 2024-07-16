@@ -1,11 +1,12 @@
-import { Address, BigDecimal, BigInt, ByteArray, log } from "@graphprotocol/graph-ts";
+import { Address, BigDecimal } from "@graphprotocol/graph-ts";
 import { addresses } from "../config/addresses";
 import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig";
 import {LogSetPrice} from "../generated/PriceOracle/PriceOracle"
-import { Pool, Position, ProtocolStat } from "../generated/schema";
-import { Constants } from "./Utils/Constants";
+import { Pool, ProtocolStat } from "../generated/schema";
+import { Constants } from "./utils/helper";
 
 export function priceUpdateHandler(event: LogSetPrice): void {
+
     let poolId = event.params._poolId;
     let pool  = Pool.load(poolId.toHexString())
     if(pool != null){
@@ -25,14 +26,13 @@ export function priceUpdateHandler(event: LogSetPrice): void {
         pool.save()
 
         //Update the safety buffer for positions
-        
         let collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
         let _debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
 
-        // let _priceWithSafetyMargin = event.params._priceWithSafetyMargin
-        for (let i = 0; i < pool.positions.length; ++i) {
-            let pos  = Position.load(pool.positions[i])
-            //TODO: Check if below check can be simplified with closed position status
+        let positions = pool.positions.load()
+
+        for (let i = 0; i < positions.length; ++i) {
+            let pos  = positions[i]
             if(pos != null && pos.debtValue.notEqual(BigDecimal.fromString('0'))
                             && pos.lockedCollateral.notEqual(BigDecimal.fromString('0'))){
                 let collateralValue = pos.lockedCollateral.times(pool.priceWithSafetyMargin)
@@ -48,8 +48,8 @@ export function priceUpdateHandler(event: LogSetPrice): void {
 
                 if(pool.priceWithSafetyMargin.gt(BigDecimal.fromString('0')) && 
                             pos.lockedCollateral.gt(BigDecimal.fromString('0'))){
-                              
-                       let collateralAvailableToWithdraw = (
+                            
+                    let collateralAvailableToWithdraw = (
                                                 pool.priceWithSafetyMargin.times(
                                                     pos.lockedCollateral).minus(pos.debtValue)
                                                 )
@@ -75,6 +75,7 @@ export function priceUpdateHandler(event: LogSetPrice): void {
             }
             stats.tvl = aggregatedTVL
             stats.save()
-        }  
+        }
+        
     }
 }

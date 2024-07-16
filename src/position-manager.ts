@@ -3,20 +3,22 @@ import {
   PositionManager,
 
 } from "../generated/PositionManager/PositionManager"
-import {CollateralPoolConfig} from "../generated/CollateralPoolConfig/CollateralPoolConfig"
-import { Position, Pool, User} from "../generated/schema"
-import { log } from '@graphprotocol/graph-ts'
+import { Position, PositionActivity, User} from "../generated/schema"
+import { CollateralPoolConfig } from "../generated/CollateralPoolConfig/CollateralPoolConfig"
 
 
 import {
   Address,
   BigDecimal,
-  BigInt
+  BigInt,
+  Bytes
 } from "@graphprotocol/graph-ts";
-import { Constants } from "./Utils/Constants";
 import { addresses } from "../config/addresses";
+import { Constants } from "./utils/helper";
+import { BookKeeper } from "../generated/BookKeeper/BookKeeper";
 
 export function newPositionHandler(event: LogNewPosition): void {
+
     let positionManager = PositionManager.bind(Address.fromString(addresses.PositionManager))
     let positionAddress = positionManager.positions(event.params._positionId)
     let poolId = positionManager.collateralPools(event.params._positionId)
@@ -39,8 +41,11 @@ export function newPositionHandler(event: LogNewPosition): void {
     position.blockNumber = event.block.number
     position.blockTimestamp = event.block.timestamp
     position.transaction = event.transaction.hash
-
+    position.pool = poolId.toHexString()
     position.save()
+
+    // create position activity
+    createPositionAcitity(positionAddress, event, poolId)
 
     //     load user account 
     let user = User.load(event.params._usr.toHexString())
@@ -55,14 +60,34 @@ export function newPositionHandler(event: LogNewPosition): void {
     }
     // save 
     user.save()
-
-    //Save newly opened position in pool
-    let pool  = Pool.load(poolId.toHexString())
-    if(pool != null){
-        let _positions = pool.positions
-        _positions.push(positionAddress.toHexString())
-        pool.positions = _positions
-        pool.save()
-    }
-
 }
+
+function createPositionAcitity(positionAddress: Address, event: LogNewPosition, poolId: Bytes): void {
+  const positionActivityKey = Constants.POSITION_ACTIVITY_PREFIX_KEY + "-" + event.transaction.hash.toHexString()
+  const bookeKeeper = BookKeeper.bind(Address.fromString(addresses.BookKeeper))
+  const positionResult = bookeKeeper.positions(poolId,positionAddress)
+  const debtShare = Constants.divByWADToDecimal(positionResult.getDebtShare())
+
+  let debtAccumulatedRate = BigDecimal.fromString('1');
+
+  //Calculated the debtAccumulatedRate if debtShare is not 0
+  if(! debtShare.equals(BigDecimal.fromString('0'))){
+      const collateralPoolConfig = CollateralPoolConfig.bind(Address.fromString(addresses.CollateralPoolConfig))
+      debtAccumulatedRate = Constants.divByRAYToDecimal(collateralPoolConfig.try_getDebtAccumulatedRate(poolId).value)
+  }
+
+  
+  let positionActivity = PositionActivity.load(positionActivityKey)
+  if (positionActivity === null) {
+      positionActivity = new PositionActivity(positionActivityKey)
+      positionActivity.activityState = 'created'
+      positionActivity.collateralAmount = Constants.divByWADToDecimal(positionResult.getLockedCollateral())
+      positionActivity.debtAmount = debtShare.times(debtAccumulatedRate)
+      positionActivity.position = positionAddress.toHexString()
+      positionActivity.blockNumber = event.block.number
+      positionActivity.blockTimestamp = event.block.timestamp
+      positionActivity.transaction = event.transaction.hash
+      positionActivity.save()
+  }
+}
+
